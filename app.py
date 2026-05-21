@@ -242,27 +242,35 @@ if submit_button:
             unsafe_allow_html=True
         )
         
-    # ==========================================================================
-    # SECCIÓN DE RESULTADOS FINALES (MÉTODO DEFINITIVO CON ST.HTML)
+   # ==========================================================================
+    # SECCIÓN DE RESULTADOS FINALES (MÉTODO 100% SEGURO - SIN HTML)
     # ==========================================================================
     st.markdown("---")
     st.markdown("<h3 style='color: #0A2540; font-family: sans-serif;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
     
-    # Creamos la cadena de texto HTML inyectando los valores de Python de forma limpia
-    html_seguro = f"""
-    <div style="background-color: #F3E8FF; padding: 22px; border-radius: 8px; font-family: sans-serif; color: #2D3748; line-height: 1.6;">
-        <p style="font-size: 15px; margin-top: 0; margin-bottom: 15px; color: #4A5568;"><i>Todos los resultados se presentan en notación decimal estándar para su lectura:</i></p>
-        
-        <p style="margin: 10px 0; font-size: 15px;"><b>A)</b> Relación líquido/gas mínima (Ls/Gs)_min: <b>{LsGs_min:.4f}</b> mol/mol</p>
-        <p style="margin: 10px 0; font-size: 15px;"><b>B)</b> Relación molar del gas en el domo de la torre (Y₂): <b>{Y2:.4f}</b> mol CO₂/mol inerte</p>
-        <p style="margin: 10px 0; font-size: 15px;"><b>C)</b> Relación molar del líquido a la entrada de la torre (X₂): <b>{X2:.4f}</b> mol CO₂/mol sol</p>
-        <p style="margin: 10px 0; font-size: 15px;"><b>D)</b> Relación molar del gas en el fondo de la torre (Y₁): <b>{Y1:.4f}</b> mol CO₂/mol inerte</p>
-        <p style="margin: 10px 0; font-size: 15px;"><b>E)</b> Relación molar de equilibrio en el fondo (X₁): <b>{X1_star:.4f}</b> mol CO₂/mol sol</p>
-        <p style="margin: 10px 0; font-size: 15px;"><b>F)</b> Flujo de gas inerte Gs (para 1 m³ de G₁): <b>{Gs_real:.4f}</b> mol/m³</p>
-        <p style="margin: 10px 0; font-size: 15px;"><b>G)</b> Masa de solución por m³ (a {factor_min:.4f} veces): <b>{kg_solucion_m3:.4f}</b> kg/m³</p>
-        <p style="margin: 10px 0; font-size: 15px;"><b>H)</b> Moles de CO₂ transportados en la corriente L₂: <b>{moles_CO2_L2:.4f}</b> mol/m³</p>
-    </div>
-    """
+    st.markdown("*Todos los resultados se presentan en notación decimal estándar para su lectura:*")
+    st.markdown("") # Espacio en blanco para separar
+
+    # Desplegamos cada inciso por separado en su propio bloque limpio
+    st.markdown(f"**A)** Relación líquido/gas mínima (Ls/Gs)_min: {LsGs_min:.4f} mol/mol")
+    st.markdown("---") # Línea divisora entre cada pregunta
     
-    # Este comando obliga al navegador a dibujar la caja lila sin mostrar código
-    st.html(html_seguro)
+    st.markdown(f"**B)** Relación molar del gas en el domo de la torre (Y₂): {y2_CO2:.4f} mol CO₂/mol inerte")
+    st.markdown("---")
+    
+    st.markdown(f"**C)** Relación molar del líquido a la entrada de la torre (X₂): {x2_input:.4f} mol CO₂/mol sol")
+    st.markdown("---")
+    
+    st.markdown(f"**D)** Relación molar del gas en el fondo de la torre (Y₁): {Y1:.4f} mol CO₂/mol inerte")
+    st.markdown("---")
+    
+    st.markdown(f"**E)** Relación molar de equilibrio en el fondo (X₁): {X1_star:.4f} mol CO₂/mol sol")
+    st.markdown("---")
+    
+    st.markdown(f"**F)** Flujo de gas inerte Gs (para 1 m³ de G₁): {Gs_real:.4f} mol/m³")
+    st.markdown("---")
+    
+    st.markdown(f"**G)** Masa de solución por m³ (a {factor_min:.4f} veces): {kg_solucion_m3:.4f} kg/m³")
+    st.markdown("---")
+    
+    st.markdown(f"**H)** Moles de CO₂ transportados en la corriente L₂: {moles_CO2_L2:.4f} mol/m³")
