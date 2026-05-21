@@ -243,124 +243,31 @@ if submit_button:
         )
         
     # ==========================================================================
-    # SECCIÓN DE RESULTADOS FINALES EN TARJETAS ESTILIZADAS
+    # SECCIÓN DE RESULTADOS FINALES (COMPONENTES NATIVOS SEGUROS)
     # ==========================================================================
-    st.markdown("<br><h3 style='color: #0A2540; text-align: center; font-family: sans-serif;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
     
-    # 1. Inyección de estilos CSS puros (Sin la 'f' al inicio para evitar errores de llaves)
-    st.markdown(
-        """
-        <style>
-            .contenedor-final {
-                background-color: #F8FAFC;
-                padding: 25px;
-                border-radius: 12px;
-                border: 1px solid #E2E8F0;
-                box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-                font-family: 'Segoe UI', sans-serif;
-                margin-top: 15px;
-            }
-            .tarjeta-resultado {
-                background-color: #FFFFFF;
-                padding: 15px;
-                margin-bottom: 12px;
-                border-radius: 8px;
-                border-left: 5px solid #0A2540;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .tarjeta-resultado-acento {
-                background-color: #FFFDF5;
-                padding: 15px;
-                margin-bottom: 12px;
-                border-radius: 8px;
-                border-left: 5px solid #D4AF37;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .texto-inciso {
-                color: #4A5568;
-                font-size: 14.5px;
-                font-weight: 500;
-                text-align: left;
-            }
-            .valor-final {
-                font-family: 'Courier New', monospace;
-                font-weight: bold;
-                font-size: 15px;
-                color: #0A2540;
-                background-color: #F1F5F9;
-                padding: 4px 10px;
-                border-radius: 4px;
-                white-space: nowrap;
-                text-align: right;
-            }
-            .valor-final-acento {
-                font-family: 'Courier New', monospace;
-                font-weight: bold;
-                font-size: 15px;
-                color: #8A6D1C;
-                background-color: #FEF3C7;
-                padding: 4px 10px;
-                border-radius: 4px;
-                white-space: nowrap;
-                text-align: right;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("---")
+    st.markdown("<h3 style='color: #0A2540; text-align: center; font-family: sans-serif;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
+    st.write("Todos los resultados se presentan en notación decimal estándar para su lectura:")
 
-    # 2. Inyección del contenido HTML con las variables dinámicas de Python
-    st.markdown(
-        f"""
-        <div class="contenedor-final">
-            <p style="font-size: 14px; color: #718096; margin-top: 0; margin-bottom: 20px; text-align: center;">Todos los resultados se presentan en notación decimal estándar para su lectura:</p>
-            
-            <div class="tarjeta-resultado-acento">
-                <span class="texto-inciso"><b>A)</b> Relación líquido/gas mínima <b>(Ls/Gs)_min</b></span>
-                <span class="valor-final-acento">{LsGs_min:.4f} mol/mol</span>
-            </div>
-            
-            <div class="tarjeta-resultado">
-                <span class="texto-inciso"><b>B)</b> Relación molar del gas en el domo de la torre <b>(Y₂)</b></span>
-                <span class="valor-final">{Y2:.4f} mol CO₂/mol inerte</span>
-            </div>
-            
-            <div class="tarjeta-resultado">
-                <span class="texto-inciso"><b>C)</b> Relación molar del líquido a la entrada de la torre <b>(X₂)</b></span>
-                <span class="valor-final">{X2:.4f} mol CO₂/mol sol</span>
-            </div>
-            
-            <div class="tarjeta-resultado">
-                <span class="texto-inciso"><b>D)</b> Relación molar del gas en el fondo de la torre <b>(Y₁)</b></span>
-                <span class="valor-final">{Y1:.4f} mol CO₂/mol inerte</span>
-            </div>
-            
-            <div class="tarjeta-resultado-acento">
-                <span class="texto-inciso"><b>E)</b> Relación molar de equilibrio en el fondo <b>(X₁*)</b></span>
-                <span class="valor-final-acento">{X1_star:.4f} mol CO₂/mol sol</span>
-            </div>
-            
-            <div class="tarjeta-resultado">
-                <span class="texto-inciso"><b>F)</b> Flujo de gas inerte <b>Gs</b> (para 1 m³ de G₁)</span>
-                <span class="valor-final">{Gs_real:.4f} mol/m³</span>
-            </div>
-            
-            <div class="tarjeta-resultado-acento">
-                <span class="texto-inciso"><b>G)</b> Masa de solución por m³ (a {factor_min:.4f} veces)</span>
-                <span class="valor-final-acento">{kg_solucion_m3:.4f} kg/m³</span>
-            </div>
-            
-            <div class="tarjeta-resultado">
-                <span class="texto-inciso"><b>H)</b> Moles de CO₂ transportados en la corriente <b>L₂</b></span>
-                <span class="valor-final">{moles_CO2_L2:.4f} mol/m³</span>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    # Fila 1 de resultados (A, B, C, D)
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric(label="A) (Ls/Gs)_min (mol/mol)", value=f"{LsGs_min:.4f}")
+    with col2:
+        st.metric(label="B) Y₂ (mol CO₂/mol inerte)", value=f"{Y2:.4f}")
+    with col3:
+        st.metric(label="C) X₂ (mol CO₂/mol sol)", value=f"{X2:.4f}")
+    with col4:
+        st.metric(label="D) Y₁ (mol CO₂/mol inerte)", value=f"{Y1:.4f}")
+
+    # Fila 2 de resultados (E, F, G, H)
+    col5, col6, col7, col8 = st.columns(4)
+    with col5:
+        st.metric(label="E) X₁* (mol CO₂/mol sol)", value=f"{X1_star:.4f}")
+    with col6:
+        st.metric(label="F) Gs (mol/m³)", value=f"{Gs_real:.4f}")
+    with col7:
+        st.metric(label="G) Masa sol. (kg/m³)", value=f"{kg_solucion_m3:.4f}")
+    with col8:
+        st.metric(label="H) Moles CO₂ en L₂ (mol/m³)", value=f"{moles_CO2_L2:.4f}")
