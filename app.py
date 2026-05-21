@@ -243,19 +243,28 @@ if submit_button:
         )
         
     # ==========================================================================
-    # SECCIÓN DE RESULTADOS FINALES POR INCISOS (MÉTODO SEGURO)
+    # SECCIÓN DE RESULTADOS FINALES POR INCISOS (FONDO MORADO TENUE SEGURO)
     # ==========================================================================
     
     st.markdown("---")
     st.markdown("<h3 style='color: #0A2540; font-family: sans-serif;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
-    st.write("Todos los resultados se presentan en notación decimal estándar para su lectura:")
-
-    # Lista limpia por incisos hacia abajo
-    st.markdown(f"**A) Relación líquido/gas mínima (Ls/Gs)_min:** `{LsGs_min:.4f}` mol/mol")
-    st.markdown(f"**B) Relación molar del gas en el domo de la torre (Y₂):** `{Y2:.4f}` mol CO₂/mol inerte")
-    st.markdown(f"**C) Relación molar del líquido a la entrada de la torre (X₂):** `{X2:.4f}` mol CO₂/mol sol")
-    st.markdown(f"**D) Relación molar del gas en el fondo de la torre (Y₁):** `{Y1:.4f}` mol CO₂/mol inerte")
-    st.markdown(f"**E) Relación molar de equilibrio en el fondo (X₁*):** `{X1_star:.4f}` mol CO₂/mol sol")
-    st.markdown(f"**F) Flujo de gas inerte Gs (para 1 m³ de G₁):** `{Gs_real:.4f}` mol/m³")
-    st.markdown(f"**G) Masa de solución por m³ (a {factor_min:.4f} veces):** `{kg_solucion_m3:.4f}` kg/m³")
-    st.markdown(f"**H) Moles de CO₂ transportados en la corriente L₂:** `{moles_CO2_L2:.4f}` mol/m³")
+    
+    # Contenedor con fondo morado muy tenue y bordes redondeados limpios
+    with st.container():
+        st.markdown(
+            f"""
+            <div style="background-color: #F3E8FF; padding: 20px; border-radius: 8px; font-family: sans-serif; color: #2D3748;">
+                <p style="font-size: 15px; margin-bottom: 15px; color: #4A5568;">Todos los resultados se presentan en notación decimal estándar para su lectura:</p>
+                
+                <p style="margin: 10px 0; font-size: 15px;"><b>A) Relación líquido/gas mínima (Ls/Gs)_min:</b> <b>{LsGs_min:.4f}</b> mol/mol</p>
+                <p style="margin: 10px 0; font-size: 15px;"><b>B) Relación molar del gas en el domo de la torre (Y₂):</b> <b>{Y2:.4f}</b> mol CO₂/mol inerte</p>
+                <p style="margin: 10px 0; font-size: 15px;"><b>C) Relación molar del líquido a la entrada de la torre (X₂):</b> <b>{X2:.4f}</b> mol CO₂/mol sol</p>
+                <p style="margin: 10px 0; font-size: 15px;"><b>D) Relación molar del gas en el fondo de la torre (Y₁):</b> <b>{Y1:.4f}</b> mol CO₂/mol inerte</p>
+                <p style="margin: 10px 0; font-size: 15px;"><b>E) Relación molar de equilibrio en el fondo (X₁*):</b> <b>{X1_star:.4f}</b> mol CO₂/mol sol</p>
+                <p style="margin: 10px 0; font-size: 15px;"><b>F) Flujo de gas inerte Gs (para 1 m³ de G₁):</b> <b>{Gs_real:.4f}</b> mol/m³</p>
+                <p style="margin: 10px 0; font-size: 15px;"><b>G) Masa de solución por m³ (a {factor_min:.4f} veces):</b> <b>{kg_solucion_m3:.4f}</b> kg/m³</p>
+                <p style="margin: 10px 0; font-size: 15px;"><b>H) Moles de CO₂ transportados en la corriente L₂:</b> <b>{moles_CO2_L2:.4f}</b> mol/m³</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
