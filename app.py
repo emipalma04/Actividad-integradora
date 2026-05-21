@@ -241,17 +241,17 @@ if submit_button:
             """,
             unsafe_allow_html=True
         )
-
+        
     # ==========================================================================
     # SECCIÓN DE RESULTADOS FINALES EN TARJETAS ESTILIZADAS
     # ==========================================================================
     st.markdown("<br><h3 style='color: #0A2540; text-align: center; font-family: sans-serif;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
     
-    # Renderizado directo de los estilos y las tarjetas usando un único bloque markdown con HTML activo
+    # 1. Inyección de estilos CSS puros (Sin la 'f' al inicio para evitar errores de llaves)
     st.markdown(
-        f"""
+        """
         <style>
-            .contenedor-final {{
+            .contenedor-final {
                 background-color: #F8FAFC;
                 padding: 25px;
                 border-radius: 12px;
@@ -259,8 +259,8 @@ if submit_button:
                 box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
                 font-family: 'Segoe UI', sans-serif;
                 margin-top: 15px;
-            }}
-            .tarjeta-resultado {{
+            }
+            .tarjeta-resultado {
                 background-color: #FFFFFF;
                 padding: 15px;
                 margin-bottom: 12px;
@@ -270,8 +270,8 @@ if submit_button:
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-            }}
-            .tarjeta-resultado-acento {{
+            }
+            .tarjeta-resultado-acento {
                 background-color: #FFFDF5;
                 padding: 15px;
                 margin-bottom: 12px;
@@ -281,14 +281,14 @@ if submit_button:
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-            }}
-            .texto-inciso {{
+            }
+            .texto-inciso {
                 color: #4A5568;
                 font-size: 14.5px;
                 font-weight: 500;
                 text-align: left;
-            }}
-            .valor-final {{
+            }
+            .valor-final {
                 font-family: 'Courier New', monospace;
                 font-weight: bold;
                 font-size: 15px;
@@ -298,8 +298,8 @@ if submit_button:
                 border-radius: 4px;
                 white-space: nowrap;
                 text-align: right;
-            }}
-            .valor-final-acento {{
+            }
+            .valor-final-acento {
                 font-family: 'Courier New', monospace;
                 font-weight: bold;
                 font-size: 15px;
@@ -309,9 +309,15 @@ if submit_button:
                 border-radius: 4px;
                 white-space: nowrap;
                 text-align: right;
-            }}
+            }
         </style>
+        """,
+        unsafe_allow_html=True
+    )
 
+    # 2. Inyección del contenido HTML con las variables dinámicas de Python
+    st.markdown(
+        f"""
         <div class="contenedor-final">
             <p style="font-size: 14px; color: #718096; margin-top: 0; margin-bottom: 20px; text-align: center;">Todos los resultados se presentan en notación decimal estándar para su lectura:</p>
             
