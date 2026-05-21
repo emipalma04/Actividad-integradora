@@ -108,25 +108,26 @@ if submit_button:
     g1_o2_visual = 0.600 if y1_O2_pct == 6.0 else (y1_O2_pct / 10.0)
 
     # ==========================================================================
-    # DESPLIEGUE EN COLUMNAS CON TODOS LOS DATOS EXTRA INCLUIDOS
+    # INYECCIÓN DE CSS AISLADA (Evita errores de sintaxis f-string)
     # ==========================================================================
+    st.markdown(
+        """
+        <style>
+            .tabla-resultados { width: 100%; border-collapse: collapse; font-family: 'Segoe UI', sans-serif; }
+            .tabla-resultados td { padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 13.5px; }
+            .tabla-resultados tr:last-child td { border-bottom: none; }
+            .lbl { font-weight: 600; color: #4A5568; }
+            .val { text-align: right; font-family: monospace; font-weight: bold; color: #1A202C; }
+        </style>
+        """, 
+        unsafe_allow_html=True
+    )
+
     st.markdown("---")
-    
     col_izq, col_der = st.columns(2)
     
-    estilo_tabla = """
-    <style>
-        .tabla-resultados { width: 100%; border-collapse: collapse; font-family: 'Segoe UI', sans-serif; }
-        .tabla-resultados td { padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 13.5px; }
-        .tabla-resultados tr:last-child td { border-bottom: none; }
-        .lbl { font-weight: 600; color: #4A5568; }
-        .val { text-align: right; font-family: monospace; font-weight: bold; color: #1A202C; }
-    </style>
-    """
-    st.markdown(estilo_tabla, unsafe_allow_html=True)
-    
     with col_izq:
-        # Bloque de Datos del Sistema y Componentes (Se añaden PM individuales faltantes y PT en atm)
+        # Bloque de Datos de los Componentes (Fondo azul)
         st.markdown(
             f"""
             <div style="background-color: #E6F0FA; padding: 18px; border-radius: 8px; border-left: 5px solid #0A2540; min-height: 480px;">
@@ -151,7 +152,7 @@ if submit_button:
         )
         
     with col_der:
-        # Bloque de Cálculos Intermedios (Se añaden y1, y2, PCO2 fondo atm, moles CO2 L2)
+        # Bloque de Cálculos Intermedios (Fondo amarillo crema)
         st.markdown(
             f"""
             <div style="background-color: #FFF9E6; padding: 18px; border-radius: 8px; border-left: 5px solid #D4AF37; min-height: 480px;">
@@ -188,4 +189,11 @@ if submit_button:
             <p><b>B) Relación molar en el domo de la torre (Y2):</b> {Y2:.6f} mol CO2/mol inerte</p>
             <p><b>C) Relación molar en el domo de la torre (X2):</b> {X2:.6f} mol CO2/mol sol</p>
             <p><b>D) Relación molar en el fondo de la torre (Y1):</b> {Y1:.6f} mol CO2/mol inerte</p>
-            <p><b>E) Relación molar de equilibrio en fondo (X1*):</b> {X1_star:.6f} mol
+            <p><b>E) Relación molar de equilibrio en fondo (X1*):</b> {X1_star:.6f} mol CO2/mol sol</p>
+            <p><b>F) Flujo de gas inerte Gs (mol/m³) [1 m³ de G1]:</b> {Gs_real:.6f} mol/m³</p>
+            <p><b>G) Masa de solución por m³:</b> {kg_solucion_m3:.6f} kg/m³</p>
+            <p><b>H) Moles de CO₂ transportados en la corriente L2:</b> {moles_CO2_L2:.6f} mol/m³</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
