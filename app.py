@@ -1,66 +1,66 @@
 # ==========================================================================
-    # SECCIÓN DE ESTILOS GLOBALES (FUENTES BONITAS Y ALINEACIÓN DE TABLAS)
-    # ==========================================================================
-    st.markdown(
-        """
-        <style>
-            /* Fuente global más moderna y limpia para toda la app */
-            html, body, [data-testid="stMarkdownContainer"] {
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            }
-            
-            /* Estilo unificado para las tablas superiores */
-            .tabla-estilizada { 
-                width: 100%; 
-                border-collapse: collapse; 
-            }
-            .tabla-estilizada td { 
-                padding: 8px 10px; 
-                border-bottom: 1px solid rgba(0,0,0,0.06); 
-                font-size: 14px; 
-                vertical-align: middle;
-            }
-            .tabla-estilizada tr:last-child td { 
-                border-bottom: none; 
-            }
-            .lbl-tabla { 
-                font-weight: 500; 
-                color: #2D3748; 
-                text-align: left; 
-            }
-            /* Formato limpio, recto y alineado para los números de las tablas */
-            .val-tabla { 
-                text-align: right; 
-                font-family: "Courier New", Courier, monospace; 
-                font-weight: 600; 
-                color: #1A202C; 
-                background-color: rgba(0, 0, 0, 0.02);
-                padding: 4px 8px !important;
-                border-radius: 4px;
-                white-space: nowrap;
-            }
-            
-            /* Estilo para las tarjetas moradas individuales de abajo */
-            .tarjeta-morada-individual {
-                background-color: #F3E8FF; 
-                padding: 14px 18px; 
-                border-radius: 8px; 
-                margin-bottom: 12px;
-                color: #2D3748;
-                font-size: 15px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            }
-            /* Número normal, recto, sin negrita pero destacado con tipografía limpia */
-            .numero-resultado {
-                font-family: "Courier New", Courier, monospace;
-                font-weight: 600;
-                font-size: 16px;
-                color: #1A202C;
-            }
-        </style>
-        """, 
-        unsafe_allow_html=True
-    )
+# SECCIÓN DE ESTILOS GLOBALES (FUENTES BONITAS Y ALINEACIÓN DE TABLAS)
+# ==========================================================================
+st.markdown(
+    """
+    <style>
+        /* Fuente global más moderna y limpia para toda la app */
+        html, body, [data-testid="stMarkdownContainer"] {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        /* Estilo unificado para las tablas superiores */
+        .tabla-estilizada { 
+            width: 100%; 
+            border-collapse: collapse; 
+        }
+        .tabla-estilizada td { 
+            padding: 8px 10px; 
+            border-bottom: 1px solid rgba(0,0,0,0.06); 
+            font-size: 14px; 
+            vertical-align: middle;
+        }
+        .tabla-estilizada tr:last-child td { 
+            border-bottom: none; 
+        }
+        .lbl-tabla { 
+            font-weight: 500; 
+            color: #2D3748; 
+            text-align: left; 
+        }
+        /* Formato limpio, recto y alineado para los números de las tablas */
+        .val-tabla { 
+            text-align: right; 
+            font-family: "Courier New", Courier, monospace; 
+            font-weight: 600; 
+            color: #1A202C; 
+            background-color: rgba(0, 0, 0, 0.02);
+            padding: 4px 8px !important;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        
+        /* Estilo para las tarjetas moradas individuales de abajo */
+        .tarjeta-morada-individual {
+            background-color: #F3E8FF; 
+            padding: 14px 18px; 
+            border-radius: 8px; 
+            margin-bottom: 12px;
+            color: #2D3748;
+            font-size: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        /* Número normal, recto, sin negrita pero destacado con tipografía limpia */
+        .numero-resultado {
+            font-family: "Courier New", Courier, monospace;
+            font-weight: 600;
+            font-size: 16px;
+            color: #1A202C;
+        }
+    </style>
+    """, 
+    unsafe_allow_html=True
+)
 
     # ==========================================================================
     # RENDERIZADO DE LAS DOS TABLAS SUPERIORES RE-ESTILIZADAS
