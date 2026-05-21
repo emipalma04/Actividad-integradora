@@ -243,26 +243,43 @@ if submit_button:
         )
         
     # ==========================================================================
-    # SECCIÓN DE RESULTADOS FINALES (MÉTODO ULTRA SEGURO CON ST.HTML)
+    # SECCIÓN DE RESULTADOS FINALES POR INCISOS (FORMATO ULTRA SEGURO)
     # ==========================================================================
+    
     st.markdown("---")
     st.markdown("<h3 style='color: #0A2540; font-family: sans-serif;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
     
-    # Creamos el bloque de texto HTML uniendo las variables de Python limpiamente
-    html_resultados = f"""
-    <div style="background-color: #F3E8FF; padding: 22px; border-radius: 8px; font-family: sans-serif; color: #2D3748; line-height: 1.6;">
-        <p style="font-size: 15px; margin-top: 0; margin-bottom: 15px; color: #4A5568;">Todos los resultados se presentan en notación decimal estándar para su lectura:</p>
+    # Inyectamos un fondo morado tenue muy limpio de forma aislada para evitar errores
+    st.markdown(
+        """
+        <style>
+            .caja-morada {
+                background-color: #F3E8FF; 
+                padding: 20px; 
+                border-radius: 8px; 
+                color: #2D3748;
+                font-family: sans-serif;
+            }
+        </style>
+        """, 
+        unsafe_allow_html=True
+    )
+
+    # Construimos las líneas de texto combinando texto normal y números con las variables
+    texto_final = f"""
+    <div class="caja-morada">
+        <p style="font-size: 15px; margin-bottom: 15px; color: #4A5568;"><i>Todos los resultados se presentan en notación decimal estándar para su lectura:</i></p>
         
-        <p style="margin: 8px 0; font-size: 16px;"><b>A) Relación líquido/gas mínima (Ls/Gs)_min:</b> <b>{LsGs_min:.4f}</b> mol/mol</p>
-        <p style="margin: 8px 0; font-size: 16px;"><b>B) Relación molar del gas en el domo de la torre (Y₂):</b> <b>{Y2:.4f}</b> mol CO₂/mol inerte</p>
-        <p style="margin: 8px 0; font-size: 16px;"><b>C) Relación molar del líquido a la entrada de la torre (X₂):</b> <b>{X2:.4f}</b> mol CO₂/mol sol</p>
-        <p style="margin: 8px 0; font-size: 16px;"><b>D) Relación molar del gas en el fondo de la torre (Y₁):</b> <b>{Y1:.4f}</b> mol CO₂/mol inerte</p>
-        <p style="margin: 8px 0; font-size: 16px;"><b>E) Relación molar de equilibrio en el fondo (X₁*):</b> <b>{X1_star:.4f}</b> mol CO₂/mol sol</p>
-        <p style="margin: 8px 0; font-size: 16px;"><b>F) Flujo de gas inerte Gs (para 1 m³ de G₁):</b> <b>{Gs_real:.4f}</b> mol/m³</p>
-        <p style="margin: 8px 0; font-size: 16px;"><b>G) Masa de solución por m³ (a {factor_min:.4f} veces):</b> <b>{kg_solucion_m3:.4f}</b> kg/m³</p>
-        <p style="margin: 8px 0; font-size: 16px;"><b>H) Moles de CO₂ transportados en la corriente L₂:</b> <b>{moles_CO2_L2:.4f}</b> mol/m³</p>
+        <p style="margin: 10px 0; font-size: 15px;"><b>A)</b> Relación líquido/gas mínima (Ls/Gs)_min: <b>{LsGs_min:.4f}</b> mol/mol</p>
+        <p style="margin: 10px 0; font-size: 15px;"><b>B)</b> Relación molar del gas en el domo de la torre (Y₂): <b>{Y2:.4f}</b> mol CO₂/mol inerte</p>
+        <p style="margin: 10px 0; font-size: 15px;"><b>C)</b> Relación molar del líquido a la entrada de la torre (X₂): <b>{X2:.4f}</b> mol CO₂/mol sol</p>
+        <p style="margin: 10px 0; font-size: 15px;"><b>D)</b> Relación molar del gas en el fondo de la torre (Y₁): <b>{Y1:.4f}</b> mol CO₂/mol inerte</p>
+        <p style="margin: 10px 0; font-size: 15px;"><b>E)</b> Relación molar de equilibrio en el fondo (X₁): <b>{X1_star:.4f}</b> mol CO₂/mol sol</p>
+        <p style="margin: 10px 0; font-size: 15px;"><b>F)</b> Flujo de gas inerte Gs (para 1 m³ de G₁): <b>{Gs_real:.4f}</b> mol/m³</p>
+        <p style="margin: 10px 0; font-size: 15px;"><b>G)</b> Masa de solución por m³ (a {factor_min:.4f} veces): <b>{kg_solucion_m3:.4f}</b> kg/m³</p>
+        <p style="margin: 10px 0; font-size: 15px;"><b>H)</b> Moles de CO₂ transportados en la corriente L₂: <b>{moles_CO2_L2:.4f}</b> mol/m³</p>
     </div>
     """
-    
-    # Le ordenamos a Streamlit que lo pinte directamente en la web como HTML real
-    st.html(html_resultados)
+
+    # Desplegamos el resultado de manera directa
+    st.markdown(texto_final, unsafe_allow_html=True)
