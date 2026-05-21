@@ -9,7 +9,7 @@ st.set_page_config(page_title="ACTIVIDAD INTEGRADORA", layout="centered")
 # ==============================================================================
 # Usamos URLs genéricas de imágenes que apuntan a logos institucionales de ejemplo. 
 # Nota: Si tienes los links directos exactos de tus imágenes, puedes reemplazar los links de abajo.
-logo_uach_url = "https://upload.wikimedia.org/wikipedia/commons/e/ea/Logo_UACH.png"
+logo_uach_url = "Logo UACH.png"
 logo_fcq_url = "https://raw.githubusercontent.com/gpalmach/actividad-integradora/main/fcq.png" # Ruta tentativa en tu repositorio
 
 st.markdown(
