@@ -151,7 +151,7 @@ def main():
     print(f" mT              (Kg)    : {kg_solucion_m3:.6f}   <- Masa total de solución por m³")
 
     # ==========================================================================
-    # DESPLIEGUE SECCIÓN 3: RESPUESTAS FORMALES EN FORMATO DECIMAL LIMPIO
+    # DESPLIEGUE SECCIÓN 3: RESPUESTAS FORMALES EN FORMATO DECIMAL
     # ==========================================================================
     print("\n" + "=" * 75)
     print(" " * 20 + "RESULTADOS FINALES")
