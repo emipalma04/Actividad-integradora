@@ -4,13 +4,8 @@ import numpy as np
 # Configuración de la página web
 st.set_page_config(page_title="ACTIVIDAD INTEGRADORA", layout="centered")
 
-# ==============================================================================
-# ENCABEZADO LOGOS E INSTITUCIONAL (UACH IZQUIERDA, FCQ DERECHA)
-# ==============================================================================
-# Usamos URLs genéricas de imágenes que apuntan a logos institucionales de ejemplo. 
-
-logo_uach_url = "Logo UACH.png"
-logo_fcq_url = "FCQ.png"
+logo_uach_url = "https://github.com/emipalma04/Actividad-integradora/blob/6f71f5e644d8e8d58449e1bba826abc73cdfc71f/Logo%20UACH.png"
+logo_fcq_url = "https://github.com/emipalma04/Actividad-integradora/blob/6f71f5e644d8e8d58449e1bba826abc73cdfc71f/FCQ.png"
 
 st.markdown(
     f"""
