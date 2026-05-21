@@ -7,11 +7,9 @@ st.set_page_config(page_title="Simulador CO2 UACh", layout="centered")
 # ==============================================================================
 # ENCABEZADO LOGOS E INSTITUCIONAL (UACH IZQUIERDA, FCQ DERECHA)
 # ==============================================================================
-# Sistema de columnas nativo de Streamlit para evitar bloqueos de carga de imágenes
 img_col_izq, texto_col_centro, img_col_der = st.columns([1, 4, 1])
 
 with img_col_izq:
-    # Logo de la UACH apuntando a tu repositorio real
     st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/Logo%20UACH.png", width=90)
 
 with texto_col_centro:
@@ -26,16 +24,15 @@ with texto_col_centro:
     )
 
 with img_col_der:
-    # Logo de la FCQ con las mayúsculas correctas de tu repositorio
-    st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/FCQ.png", width=60)
+    st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/FCQ.png", width=80)
 
 st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bottom: 20px;'>", unsafe_allow_html=True)
 
 # Datos del estudiante
-st.markdown("**PROYECTO:** Simulador de Absorbedor de CO₂ en una Torre Empacada")
-st.markdown("**ACTIVIDAD INTEGRADORA:** Participación #4 (Unidad #3)")
 st.markdown("**MATERIA:** Operaciones Unitarias II")
-st.markdown("**DOCENTE:** Dr. Ildebrando Pérez Reyes")
+st.markdown("**ACTIVIDAD:** Participación #4 (Unidad #3)")
+st.markdown("**PROYECTO:** Simulador de Absorbedor de CO₂ en una Torre Empacada")
+st.markdown("**CATEDRÁTICO:** Dr. Ildebrando Pérez Reyes")
 st.markdown("**ALUMNO:** Gerardo Emiliano Palma Chávez")
 st.markdown("---")
 
@@ -111,53 +108,67 @@ if submit_button:
     g1_o2_visual = 0.600 if y1_O2_pct == 6.0 else (y1_O2_pct / 10.0)
 
     # ==========================================================================
-    # DESPLIEGUE EN COLUMNAS CON COLORES DE FONDO DISTINTOS (CSS INLINE)
+    # NUEVO DESPLIEGUE ESTILIZADO EN TABLAS DE ALTA ESTÉTICA
     # ==========================================================================
     st.markdown("---")
     
     col_izq, col_der = st.columns(2)
     
+    # CSS común para las filas de las tablas
+    estilo_tabla = """
+    <style>
+        .tabla-resultados { width: 100%; border-collapse: collapse; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .tabla-resultados td { padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 14px; color: #333; }
+        .tabla-resultados tr:last-child td { border-bottom: none; }
+        .lbl { font-weight: 600; color: #4A5568; }
+        .val { text-align: right; font-family: 'Courier New', Courier, monospace; font-weight: bold; color: #1A202C; }
+    </style>
+    """
+    st.markdown(estilo_tabla, unsafe_allow_html=True)
+    
     with col_izq:
-        # Fondo Azul Tenue para DATOS
         st.markdown(
             f"""
-            <div style="background-color: #E6F0FA; padding: 15px; border-radius: 8px; border-left: 5px solid #0A2540; min-height: 290px;">
-                <h3 style="color: #0A2540; margin-top: 0; font-family: sans-serif;"><b>DATOS DE LOS COMPONENTES</b></h3>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">PM A (CO2) (g/mol) : {PM_CO2:.3f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">PM B (MEA) (g/mol) : {PM_MEA:.3f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">PM sol prom (g/mol): {PM_sol_visual:.3f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">PT         (mmHg)  : {PT_mmHg:.3f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">PCO2 fondo (mmHg)  : {P_CO2_fondo_mmHg:.3f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">G1 CO2 (Relación)  : {g1_co2_visual:.6f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">G1 N2              : {g1_n2_visual:.6f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">G1 O2              : {g1_o2_visual:.3f}</p>
+            <div style="background-color: #F0F4F8; padding: 20px; border-radius: 12px; border-left: 6px solid #0A2540; box-shadow: 0 2px 4px rgba(0,0,0,0.02); min-height: 410px;">
+                <h3 style="color: #0A2540; margin-top: 0; margin-bottom: 15px; font-family: sans-serif; font-size: 18px; letter-spacing: 0.5px;"><b>DATOS DE LOS COMPONENTES</b></h3>
+                <table class="tabla-resultados">
+                    <tr><td class="lbl">PM A (CO₂) (g/mol)</td><td class="val">{PM_CO2:.3f}</td></tr>
+                    <tr><td class="lbl">PM B (MEA) (g/mol)</td><td class="val">{PM_MEA:.3f}</td></tr>
+                    <tr><td class="lbl">PM sol prom (g/mol)</td><td class="val">{PM_sol_visual:.3f}</td></tr>
+                    <tr><td class="lbl">PT (mmHg)</td><td class="val">{PT_mmHg:.3f}</td></tr>
+                    <tr><td class="lbl">PCO₂ fondo (mmHg)</td><td class="val">{P_CO2_fondo_mmHg:.3f}</td></tr>
+                    <tr><td class="lbl">G1 CO₂ (Relación)</td><td class="val">{g1_co2_visual:.6f}</td></tr>
+                    <tr><td class="lbl">G1 N₂</td><td class="val">{g1_n2_visual:.6f}</td></tr>
+                    <tr><td class="lbl">G1 O₂</td><td class="val">{g1_o2_visual:.3f}</td></tr>
+                </table>
             </div>
             """,
             unsafe_allow_html=True
         )
         
     with col_der:
-        # Fondo Amarillo/Crema Tenue para CÁLCULOS
         st.markdown(
             f"""
-            <div style="background-color: #FFF9E6; padding: 15px; border-radius: 8px; border-left: 5px solid #D4AF37; min-height: 290px;">
-                <h3 style="color: #8A6D1C; margin-top: 0; font-family: sans-serif;"><b>CÁLCULOS INTERMEDIOS</b></h3>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">X1                 : {X1_star:.6f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">X2                 : {X2:.6f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">Y1                 : {Y1:.6f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">Y2                 : {Y2:.6f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">(Ls/Gs)_min        : {LsGs_min:.6f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">(Ls/Gs)_real       : {LsGs_real:.6f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">Gs 1.2 atm (mol/m³): {Gs_real:.6f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">Ls         (mol)   : {Ls_real:.6f}</p>
-                <p style="font-family: monospace; margin: 5px 0; font-size: 14px;">mT         (Kg)    : {kg_solucion_m3:.6f}</p>
+            <div style="background-color: #FFFDF5; padding: 20px; border-radius: 12px; border-left: 6px solid #D4AF37; box-shadow: 0 2px 4px rgba(0,0,0,0.02); min-height: 410px;">
+                <h3 style="color: #8A6D1C; margin-top: 0; margin-bottom: 15px; font-family: sans-serif; font-size: 18px; letter-spacing: 0.5px;"><b>CÁLCULOS INTERMEDIOS</b></h3>
+                <table class="tabla-resultados">
+                    <tr><td class="lbl">X₁</td><td class="val">{X1_star:.6f}</td></tr>
+                    <tr><td class="lbl">X₂</td><td class="val">{X2:.6f}</td></tr>
+                    <tr><td class="lbl">Y₁</td><td class="val">{Y1:.6f}</td></tr>
+                    <tr><td class="lbl">Y₂</td><td class="val">{Y2:.6f}</td></tr>
+                    <tr><td class="lbl"><span style="font-family:serif;">(L<sub>s</sub>/G<sub>s</sub>)</span><sub>min</sub></td><td class="val">{LsGs_min:.6f}</td></tr>
+                    <tr><td class="lbl"><span style="font-family:serif;">(L<sub>s</sub>/G<sub>s</sub>)</span><sub>real</sub></td><td class="val">{LsGs_real:.6f}</td></tr>
+                    <tr><td class="lbl">G<sub>s</sub> 1.2 atm (mol/m³)</td><td class="val">{Gs_real:.6f}</td></tr>
+                    <tr><td class="lbl">L<sub>s</sub> (mol)</td><td class="val">{Ls_real:.6f}</td></tr>
+                    <tr><td class="lbl">m<sub>T</sub> (Kg)</td><td class="val">{kg_solucion_m3:.6f}</td></tr>
+                </table>
             </div>
             """,
             unsafe_allow_html=True
         )
 
     # ==========================================================================
-    # SECCIÓN DE RESPUESTAS OFICIALES (CONSTRUCCIÓN SEGURA)
+    # SECCIÓN DE RESPUESTAS OFICIALES
     # ==========================================================================
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("### **RESPUESTAS OFICIALES DEL CUESTIONARIO**")
