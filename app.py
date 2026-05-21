@@ -12,7 +12,7 @@ img_col_izq, texto_col_centro, img_col_der = st.columns([1, 4, 1])
 
 with img_col_izq:
     # Logo UACH directo desde servidor seguro
-    st.image("https://github.com/emipalma04/Actividad-integradora/blob/main/Logo%20UACH.png", width=90)
+    st.image("https://github.com/emipalma04/Actividad-integradora/blob/8a7c84cf75f3443cfdc9d0e51400e7e80ea6c7e8/Logo%20UACH.png", width=90)
 
 with texto_col_centro:
     st.markdown(
@@ -27,7 +27,7 @@ with texto_col_centro:
 
 with img_col_der:
     # Logo FCQ desde tu repositorio de GitHub
-    st.image("https://github.com/emipalma04/Actividad-integradora/blob/main/FCQ.png", width=80)
+    st.image("https://github.com/emipalma04/Actividad-integradora/blob/ebd586bac19441c93038671f8cf483a7375b97ef/FCQ.png", width=80)
 
 st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bottom: 20px;'>", unsafe_allow_html=True)
 
