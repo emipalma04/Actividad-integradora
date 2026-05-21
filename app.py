@@ -243,32 +243,15 @@ if submit_button:
         )
         
     # ==========================================================================
-    # SECCIÓN DE RESULTADOS FINALES POR INCISOS (FORMATO ULTRA SEGURO)
+    # SECCIÓN DE RESULTADOS FINALES (MÉTODO DEFINITIVO CON ST.HTML)
     # ==========================================================================
-    
     st.markdown("---")
     st.markdown("<h3 style='color: #0A2540; font-family: sans-serif;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
     
-    # Inyectamos un fondo morado tenue muy limpio de forma aislada para evitar errores
-    st.markdown(
-        """
-        <style>
-            .caja-morada {
-                background-color: #F3E8FF; 
-                padding: 20px; 
-                border-radius: 8px; 
-                color: #2D3748;
-                font-family: sans-serif;
-            }
-        </style>
-        """, 
-        unsafe_allow_html=True
-    )
-
-    # Construimos las líneas de texto combinando texto normal y números con las variables
-    texto_final = f"""
-    <div class="caja-morada">
-        <p style="font-size: 15px; margin-bottom: 15px; color: #4A5568;"><i>Todos los resultados se presentan en notación decimal estándar para su lectura:</i></p>
+    # Creamos la cadena de texto HTML inyectando los valores de Python de forma limpia
+    html_seguro = f"""
+    <div style="background-color: #F3E8FF; padding: 22px; border-radius: 8px; font-family: sans-serif; color: #2D3748; line-height: 1.6;">
+        <p style="font-size: 15px; margin-top: 0; margin-bottom: 15px; color: #4A5568;"><i>Todos los resultados se presentan en notación decimal estándar para su lectura:</i></p>
         
         <p style="margin: 10px 0; font-size: 15px;"><b>A)</b> Relación líquido/gas mínima (Ls/Gs)_min: <b>{LsGs_min:.4f}</b> mol/mol</p>
         <p style="margin: 10px 0; font-size: 15px;"><b>B)</b> Relación molar del gas en el domo de la torre (Y₂): <b>{Y2:.4f}</b> mol CO₂/mol inerte</p>
@@ -280,6 +263,6 @@ if submit_button:
         <p style="margin: 10px 0; font-size: 15px;"><b>H)</b> Moles de CO₂ transportados en la corriente L₂: <b>{moles_CO2_L2:.4f}</b> mol/m³</p>
     </div>
     """
-
-    # Desplegamos el resultado de manera directa
-    st.markdown(texto_final, unsafe_allow_html=True)
+    
+    # Este comando obliga al navegador a dibujar la caja lila sin mostrar código
+    st.html(html_seguro)
