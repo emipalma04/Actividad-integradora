@@ -32,10 +32,10 @@ with img_col_der:
 st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bottom: 20px;'>", unsafe_allow_html=True)
 
 # Datos del estudiante
-st.markdown("**MATERIA:** Operaciones Unitarias II")
-st.markdown("**ACTIVIDAD:** Participación #4 (Unidad #3)")
 st.markdown("**PROYECTO:** Simulador de Absorbedor de CO₂ en una Torre Empacada")
-st.markdown("**CATEDRÁTICO:** Dr. Ildebrando Pérez Reyes")
+st.markdown("**ACTIVIDAD INTEGRADORA:** Participación #4 (Unidad #3)")
+st.markdown("**MATERIA:** Operaciones Unitarias II")
+st.markdown("**DOCENTE:** Dr. Ildebrando Pérez Reyes")
 st.markdown("**ALUMNO:** Gerardo Emiliano Palma Chávez")
 st.markdown("---")
 
