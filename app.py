@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 
 # Configuración de la página web
-st.set_page_config(page_title="Simulador CO2 UACh", layout="centered")
+st.set_page_config(page_title="Simulador CO2 UACH", layout="centered")
 
 # ==============================================================================
 # ENCABEZADO LOGOS E INSTITUCIONAL (UACH IZQUIERDA, FCQ DERECHA)
@@ -31,32 +31,32 @@ st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bott
 # Datos del estudiante
 st.markdown("**ACTIVIDAD INTEGRADORA:** Participación #4 (Unidad #3)")
 st.markdown("**MATERIA:** Operaciones Unitarias II")
-st.markdown("**PROYECTO:** Simulador de Absorbedor de CO₂ en una Torre Empacada")
+st.markdown("**PROYECTO:** Simulador de absorbedor de CO₂ en una torre empacada")
 st.markdown("**DOCENTE:** Dr. Ildebrando Pérez Reyes")
 st.markdown("**ALUMNO:** Gerardo Emiliano Palma Chávez")
 st.markdown("---")
 
-st.markdown("<h3 style='color: #0A2540;'>INSTRUCCIONES</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='color: #0A2540;'>Instrucciones</h3>", unsafe_allow_html=True)
 st.write("Modifica los parámetros según lo requieras y haz clic en el botón de abajo para actualizar de forma automática los resultados del modelo.")
 st.info("Nota: Los valores numéricos precargados en el formulario corresponden por defecto a los datos de diseño del ejercicio U3-P4.")
 
 # Formulario para las entradas del usuario
 with st.form("simulador_form"):
-    st.markdown("<h3 style='color: #0A2540;'>1. Entradas de Diseño</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='color: #0A2540;'>1. Entradas de diseño</h3>", unsafe_allow_html=True)
     
     C_MEA = st.number_input("Concentración de la solución de MEA (% en peso)", min_value=0.0, max_value=100.0, value=30.0, step=1.0)
     
-    st.markdown("<h4 style='color: #0A2540;'>Composición del Gas de Entrada (Fondo) - G1</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='color: #0A2540;'>Composición del gas de entrada (Fondo) - G1</h4>", unsafe_allow_html=True)
     y1_CO2_pct = st.number_input("Porcentaje de CO₂ (% en volumen)", min_value=0.0, max_value=100.0, value=15.0, format="%.2f")
     y1_O2_pct  = st.number_input("Porcentaje de O₂  (% en volumen)", min_value=0.0, max_value=100.0, value=6.0, format="%.2f")
     y1_N2_pct  = st.number_input("Porcentaje de N₂  (% en volumen)", min_value=0.0, max_value=100.0, value=79.0, format="%.2f")
     
-    st.markdown("<h4 style='color: #0A2540;'>Condiciones Operativas del Sistema</h4>", unsafe_allow_html=True)
-    x2_input = st.number_input("Concentración del líquido en el domo (mol CO2/mol sol)", min_value=0.0, max_value=1.0, value=0.058, format="%.3f")
+    st.markdown("<h4 style='color: #0A2540;'>Condiciones operativas del sistema</h4>", unsafe_allow_html=True)
+    x2_input = st.number_input("Concentración del líquido en el domo (mol CO₂/mol sol)", min_value=0.0, max_value=1.0, value=0.058, format="%.3f")
     factor_min = st.number_input("Multiplicador de la relación Ls-min/Gs (Exceso)", min_value=1.0, max_value=5.0, value=1.2, step=0.1)
     y2_CO2_pct = st.number_input("Concentración de CO₂ deseada en el gas de salida (%)", min_value=0.0, max_value=100.0, value=2.0, format="%.2f")
     
-    submit_button = st.form_submit_button(label="Correr Simulación")
+    submit_button = st.form_submit_button(label="Correr simulación")
 
 # ==============================================================================
 # PROCESAMIENTO MATEMÁTICO REAL
@@ -138,23 +138,23 @@ if submit_button:
         st.markdown(
             f"""
             <div style="background-color: #E6F0FA; padding: 20px; border-radius: 8px; border-left: 5px solid #0A2540; min-height: 550px;">
-                <h3 style="color: #0A2540; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>DATOS DE LOS COMPONENTES</b></h3>
+                <h3 style="color: #0A2540; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Datos de los componentes</b></h3>
                 <table class="tabla-resultados">
-                    <tr><td class="lbl">Peso Molecular de CO₂ (g/mol)</td><td class="val">{PM_CO2:.3f}</td></tr>
-                    <tr><td class="lbl">Peso Molecular de MEA (g/mol)</td><td class="val">{PM_MEA:.3f}</td></tr>
-                    <tr><td class="lbl">Peso Molecular de O₂ (g/mol)</td><td class="val">{PM_O2:.3f}</td></tr>
-                    <tr><td class="lbl">Peso Molecular de N₂ (g/mol)</td><td class="val">{PM_N2:.3f}</td></tr>
-                    <tr><td class="lbl">Peso Molecular del H₂O (g/mol)</td><td class="val">{PM_H2O:.3f}</td></tr>
-                    <tr><td class="lbl">Peso Molecular Promedio Solución (g/mol)</td><td class="val">{PM_sol_visual:.3f}</td></tr>
-                    <tr><td class="lbl">Presión Total del Sistema (atm)</td><td class="val">1.200</td></tr>
-                    <tr><td class="lbl">Presión Total del Sistema (mmHg)</td><td class="val">{PT_mmHg:.3f}</td></tr>
-                    <tr><td class="lbl">Presión Parcial Fondo CO₂ (mmHg)</td><td class="val">{P_CO2_fondo:.3f}</td></tr>
-                    <tr><td class="lbl">Relación Molar de Entrada G1 (CO₂)</td><td class="val">{g1_co2_visual:.6f}</td></tr>
-                    <tr><td class="lbl">Relación Molar de Entrada G1 (N₂)</td><td class="val">{g1_n2_visual:.6f}</td></tr>
-                    <tr><td class="lbl">Relación Molar de Entrada G1 (O₂)</td><td class="val">{g1_o2_visual:.3f}</td></tr>
-                    <tr><td class="lbl">Fracción Molar de Salida G2 (CO₂)</td><td class="val">{g2_co2_visual:.3f}</td></tr>
-                    <tr><td class="lbl">Fracción Molar de Salida G2 (N₂)</td><td class="val">{g2_n2_visual:.3f}</td></tr>
-                    <tr><td class="lbl">Fracción Molar de Salida G2 (O₂)</td><td class="val">{g2_o2_visual:.3f}</td></tr>
+                    <tr><td class="lbl">Peso molecular de CO₂ (g/mol)</td><td class="val">{PM_CO2:.3f}</td></tr>
+                    <tr><td class="lbl">Peso molecular de MEA (g/mol)</td><td class="val">{PM_MEA:.3f}</td></tr>
+                    <tr><td class="lbl">Peso molecular de O₂ (g/mol)</td><td class="val">{PM_O2:.3f}</td></tr>
+                    <tr><td class="lbl">Peso molecular de N₂ (g/mol)</td><td class="val">{PM_N2:.3f}</td></tr>
+                    <tr><td class="lbl">Peso molecular del H₂O (g/mol)</td><td class="val">{PM_H2O:.3f}</td></tr>
+                    <tr><td class="lbl">Peso molecular promedio de la solución (g/mol)</td><td class="val">{PM_sol_visual:.3f}</td></tr>
+                    <tr><td class="lbl">Presión total del sistema (atm)</td><td class="val">1.200</td></tr>
+                    <tr><td class="lbl">Presión total del sistema (mmHg)</td><td class="val">{PT_mmHg:.3f}</td></tr>
+                    <tr><td class="lbl">Presión parcial de CO₂ en el fondo (mmHg)</td><td class="val">{P_CO2_fondo:.3f}</td></tr>
+                    <tr><td class="lbl">Relación molar de entrada G1 (CO₂)</td><td class="val">{g1_co2_visual:.6f}</td></tr>
+                    <tr><td class="lbl">Relación molar de entrada G1 (N₂)</td><td class="val">{g1_n2_visual:.6f}</td></tr>
+                    <tr><td class="lbl">Relación molar de entrada G1 (O₂)</td><td class="val">{g1_o2_visual:.3f}</td></tr>
+                    <tr><td class="lbl">Fracción molar de salida G2 (CO₂)</td><td class="val">{g2_co2_visual:.3f}</td></tr>
+                    <tr><td class="lbl">Fracción molar de salida G2 (N₂)</td><td class="val">{g2_n2_visual:.3f}</td></tr>
+                    <tr><td class="lbl">Fracción molar de salida G2 (O₂)</td><td class="val">{g2_o2_visual:.3f}</td></tr>
                 </table>
             </div>
             """,
@@ -165,20 +165,20 @@ if submit_button:
         st.markdown(
             f"""
             <div style="background-color: #FFF9E6; padding: 20px; border-radius: 8px; border-left: 5px solid #D4AF37; min-height: 550px;">
-                <h3 style="color: #8A6D1C; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>CÁLCULOS INTERMEDIOS</b></h3>
+                <h3 style="color: #8A6D1C; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Cálculos intermedios</b></h3>
                 <table class="tabla-resultados">
-                    <tr><td class="lbl">Composición de Equilibrio (X₁*)</td><td class="val">{X1_star:.6f}</td></tr>
-                    <tr><td class="lbl">Composición Líquido Domo (X₂)</td><td class="val">{X2:.6f}</td></tr>
-                    <tr><td class="lbl">Relación Molar Fondo (Y₁)</td><td class="val">{Y1:.6f}</td></tr>
-                    <tr><td class="lbl">Relación Molar Domo (Y₂)</td><td class="val">{Y2:.6f}</td></tr>
-                    <tr><td class="lbl">Relación Líquido/Gas Mínima (Ls/Gs)_min</td><td class="val">{LsGs_min:.6f}</td></tr>
-                    <tr><td class="lbl">Relación Líquido/Gas Operación (Ls/Gs)_real</td><td class="val">{LsGs_real:.6f}</td></tr>
-                    <tr><td class="lbl">Moles Totales a 1.0 atm (mol)</td><td class="val">{n_total_m3_1atm:.6f}</td></tr>
-                    <tr><td class="lbl">Gas Inerte Estándar Gs 1.0 atm (mol/m³)</td><td class="val">{Gs_1atm:.6f}</td></tr>
-                    <tr><td class="lbl">Moles Totales Operación 1.2 atm (mol)</td><td class="val">{n_total_m3_real:.6f}</td></tr>
-                    <tr><td class="lbl">Gas Inerte Real Gs 1.2 atm (mol/m³)</td><td class="val">{Gs_real:.6f}</td></tr>
-                    <tr><td class="lbl">Flujo Molar de Líquido Inerte Ls (mol)</td><td class="val">{Ls_real:.6f}</td></tr>
-                    <tr><td class="lbl">Masa Total de Solución Absorbente (Kg)</td><td class="val">{kg_solucion_m3:.6f}</td></tr>
+                    <tr><td class="lbl">Composición de equilibrio (X₁*)</td><td class="val">{X1_star:.6f}</td></tr>
+                    <tr><td class="lbl">Composición del líquido en el domo (X₂)</td><td class="val">{X2:.6f}</td></tr>
+                    <tr><td class="lbl">Relación molar en el fondo (Y₁)</td><td class="val">{Y1:.6f}</td></tr>
+                    <tr><td class="lbl">Relación molar en el domo (Y₂)</td><td class="val">{Y2:.6f}</td></tr>
+                    <tr><td class="lbl">Relación líquido/gas mínima (Ls/Gs)_min</td><td class="val">{LsGs_min:.6f}</td></tr>
+                    <tr><td class="lbl">Relación líquido/gas de operación (Ls/Gs)_real</td><td class="val">{LsGs_real:.6f}</td></tr>
+                    <tr><td class="lbl">Moles totales a 1.0 atm (mol)</td><td class="val">{n_total_m3_1atm:.6f}</td></tr>
+                    <tr><td class="lbl">Gas inerte estándar Gs a 1.0 atm (mol/m³)</td><td class="val">{Gs_1atm:.6f}</td></tr>
+                    <tr><td class="lbl">Moles totales en operación a 1.2 atm (mol)</td><td class="val">{n_total_m3_real:.6f}</td></tr>
+                    <tr><td class="lbl">Gas inerte real Gs a 1.2 atm (mol/m³)</td><td class="val">{Gs_real:.6f}</td></tr>
+                    <tr><td class="lbl">Flujo molar de líquido inerte Ls (mol)</td><td class="val">{Ls_real:.6f}</td></tr>
+                    <tr><td class="lbl">Masa total de solución absorbente (kg)</td><td class="val">{kg_solucion_m3:.6f}</td></tr>
                 </table>
             </div>
             """,
@@ -188,7 +188,7 @@ if submit_button:
     # ==========================================================================
     # SECCIÓN DE RESULTADOS FINALES
     # ==========================================================================
-    st.markdown("<br><h3 style='color: #0A2540; text-align: center;'><b>RESULTADOS FINALES</b></h3>", unsafe_allow_html=True)
+    st.markdown("<br><h3 style='color: #0A2540; text-align: center;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
     
     st.markdown(
         f"""
@@ -198,7 +198,7 @@ if submit_button:
             <p style="margin: 8px 0; font-size: 14px;"><b>B) Relación molar en el domo de la torre (Y₂):</b> <span style="font-family: monospace; font-weight: bold; font-size: 15px;">{Y2:.6f}</span> mol CO₂/mol inerte</p>
             <p style="margin: 8px 0; font-size: 14px;"><b>C) Relación molar en el domo de la torre (X₂):</b> <span style="font-family: monospace; font-weight: bold; font-size: 15px;">{X2:.6f}</span> mol CO₂/mol sol</p>
             <p style="margin: 8px 0; font-size: 14px;"><b>D) Relación molar en el fondo de la torre (Y₁):</b> <span style="font-family: monospace; font-weight: bold; font-size: 15px;">{Y1:.6f}</span> mol CO₂/mol inerte</p>
-            <p style="margin: 8px 0; font-size: 14px;"><b>E) Relación molar de equilibrio en fondo (X₁*):</b> <span style="font-family: monospace; font-weight: bold; font-size: 15px;">{X1_star:.6f}</span> mol CO₂/mol sol</p>
+            <p style="margin: 8px 0; font-size: 14px;"><b>E) Relación molar de equilibrio en el fondo (X₁*):</b> <span style="font-family: monospace; font-weight: bold; font-size: 15px;">{X1_star:.6f}</span> mol CO₂/mol sol</p>
             <p style="margin: 8px 0; font-size: 14px;"><b>F) Flujo de gas inerte Gs (mol/m³) [1 m³ de G₁]:</b> <span style="font-family: monospace; font-weight: bold; font-size: 15px;">{Gs_real:.6f}</span> mol/m³</p>
             <p style="margin: 8px 0; font-size: 14px;"><b>G) Masa de solución por m³ (a {factor_min:.1f} veces):</b> <span style="font-family: monospace; font-weight: bold; font-size: 15px;">{kg_solucion_m3:.6f}</span> kg/m³</p>
             <p style="margin: 8px 0; font-size: 14px;"><b>H) Moles de CO₂ transportados en la corriente L₂:</b> <span style="font-family: monospace; font-weight: bold; font-size: 15px;">{moles_CO2_L2:.6f}</span> mol/m³</p>
