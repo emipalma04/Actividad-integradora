@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 
 # Configuración de la página web
-st.set_page_config(page_title="Actividad Integradora - Emiliano Palma", layout="centered")
+st.set_page_config(page_title="Actividad Integradora - Emiliano Palma", layout="centered") 
 
 # ==============================================================================
 # ENCABEZADO LOGOS E INSTITUCIONAL (UACH IZQUIERDA, FCQ DERECHA)
