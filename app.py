@@ -108,17 +108,16 @@ if submit_button:
     g1_o2_visual = 0.600 if y1_O2_pct == 6.0 else (y1_O2_pct / 10.0)
 
     # ==========================================================================
-    # DESPLIEGUE EN COLUMNAS CON ALINEACIÓN SIMÉTRICA (CONSERVA TUS COLORES)
+    # DESPLIEGUE EN COLUMNAS CON TODOS LOS DATOS EXTRA INCLUIDOS
     # ==========================================================================
     st.markdown("---")
     
     col_izq, col_der = st.columns(2)
     
-    # CSS para dar alineación limpia y homogénea a las filas de datos de arriba
     estilo_tabla = """
     <style>
         .tabla-resultados { width: 100%; border-collapse: collapse; font-family: 'Segoe UI', sans-serif; }
-        .tabla-resultados td { padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 14px; }
+        .tabla-resultados td { padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 13.5px; }
         .tabla-resultados tr:last-child td { border-bottom: none; }
         .lbl { font-weight: 600; color: #4A5568; }
         .val { text-align: right; font-family: monospace; font-weight: bold; color: #1A202C; }
@@ -127,16 +126,20 @@ if submit_button:
     st.markdown(estilo_tabla, unsafe_allow_html=True)
     
     with col_izq:
-        # Tu fondo azul original
+        # Bloque de Datos del Sistema y Componentes (Se añaden PM individuales faltantes y PT en atm)
         st.markdown(
             f"""
-            <div style="background-color: #E6F0FA; padding: 18px; border-radius: 8px; border-left: 5px solid #0A2540; min-height: 380px;">
+            <div style="background-color: #E6F0FA; padding: 18px; border-radius: 8px; border-left: 5px solid #0A2540; min-height: 480px;">
                 <h3 style="color: #0A2540; margin-top: 0; margin-bottom: 15px; font-family: sans-serif;"><b>DATOS DE LOS COMPONENTES</b></h3>
                 <table class="tabla-resultados">
                     <tr><td class="lbl">PM A (CO2) (g/mol)</td><td class="val">{PM_CO2:.3f}</td></tr>
                     <tr><td class="lbl">PM B (MEA) (g/mol)</td><td class="val">{PM_MEA:.3f}</td></tr>
+                    <tr><td class="lbl">PM O2 (g/mol)</td><td class="val">{PM_O2:.3f}</td></tr>
+                    <tr><td class="lbl">PM N2 (g/mol)</td><td class="val">{PM_N2:.3f}</td></tr>
+                    <tr><td class="lbl">PM H2O (g/mol)</td><td class="val">{PM_H2O:.3f}</td></tr>
                     <tr><td class="lbl">PM sol prom (g/mol)</td><td class="val">{PM_sol_visual:.3f}</td></tr>
                     <tr><td class="lbl">PT (mmHg)</td><td class="val">{PT_mmHg:.3f}</td></tr>
+                    <tr><td class="lbl">PT (atm)</td><td class="val">{PT_atm:.4f}</td></tr>
                     <tr><td class="lbl">PCO2 fondo (mmHg)</td><td class="val">{P_CO2_fondo_mmHg:.3f}</td></tr>
                     <tr><td class="lbl">G1 CO2 (Relación)</td><td class="val">{g1_co2_visual:.6f}</td></tr>
                     <tr><td class="lbl">G1 N2</td><td class="val">{g1_n2_visual:.6f}</td></tr>
@@ -148,20 +151,24 @@ if submit_button:
         )
         
     with col_der:
-        # Tu fondo amarillo crema original
+        # Bloque de Cálculos Intermedios (Se añaden y1, y2, PCO2 fondo atm, moles CO2 L2)
         st.markdown(
             f"""
-            <div style="background-color: #FFF9E6; padding: 18px; border-radius: 8px; border-left: 5px solid #D4AF37; min-height: 380px;">
+            <div style="background-color: #FFF9E6; padding: 18px; border-radius: 8px; border-left: 5px solid #D4AF37; min-height: 480px;">
                 <h3 style="color: #8A6D1C; margin-top: 0; margin-bottom: 15px; font-family: sans-serif;"><b>CÁLCULOS INTERMEDIOS</b></h3>
                 <table class="tabla-resultados">
-                    <tr><td class="lbl">X1</td><td class="val">{X1_star:.6f}</td></tr>
-                    <tr><td class="lbl">X2</td><td class="val">{X2:.6f}</td></tr>
-                    <tr><td class="lbl">Y1</td><td class="val">{Y1:.6f}</td></tr>
-                    <tr><td class="lbl">Y2</td><td class="val">{Y2:.6f}</td></tr>
+                    <tr><td class="lbl">y1 (fracción mol fondo)</td><td class="val">{y1_CO2:.4f}</td></tr>
+                    <tr><td class="lbl">y2 (fracción mol domo)</td><td class="val">{y2_CO2:.4f}</td></tr>
+                    <tr><td class="lbl">PCO2 fondo (atm)</td><td class="val">{P_CO2_fondo_atm:.4f}</td></tr>
+                    <tr><td class="lbl">X1 (Equilibrio)</td><td class="val">{X1_star:.6f}</td></tr>
+                    <tr><td class="lbl">X2 (Domo)</td><td class="val">{X2:.6f}</td></tr>
+                    <tr><td class="lbl">Y1 (Relación mol)</td><td class="val">{Y1:.6f}</td></tr>
+                    <tr><td class="lbl">Y2 (Relación mol)</td><td class="val">{Y2:.6f}</td></tr>
                     <tr><td class="lbl">(Ls/Gs)_min</td><td class="val">{LsGs_min:.6f}</td></tr>
                     <tr><td class="lbl">(Ls/Gs)_real</td><td class="val">{LsGs_real:.6f}</td></tr>
                     <tr><td class="lbl">Gs 1.2 atm (mol/m³)</td><td class="val">{Gs_real:.6f}</td></tr>
                     <tr><td class="lbl">Ls (mol)</td><td class="val">{Ls_real:.6f}</td></tr>
+                    <tr><td class="lbl">moles CO2 en L2 (mol/m³)</td><td class="val">{moles_CO2_L2:.6f}</td></tr>
                     <tr><td class="lbl">mT (Kg)</td><td class="val">{kg_solucion_m3:.6f}</td></tr>
                 </table>
             </div>
@@ -181,11 +188,4 @@ if submit_button:
             <p><b>B) Relación molar en el domo de la torre (Y2):</b> {Y2:.6f} mol CO2/mol inerte</p>
             <p><b>C) Relación molar en el domo de la torre (X2):</b> {X2:.6f} mol CO2/mol sol</p>
             <p><b>D) Relación molar en el fondo de la torre (Y1):</b> {Y1:.6f} mol CO2/mol inerte</p>
-            <p><b>E) Relación molar de equilibrio en fondo (X1*):</b> {X1_star:.6f} mol CO2/mol sol</p>
-            <p><b>F) Flujo de gas inerte Gs (mol/m³) [1 m³ de G1]:</b> {Gs_real:.6f} mol/m³</p>
-            <p><b>G) Masa de solución por m³:</b> {kg_solucion_m3:.6f} kg/m³</p>
-            <p><b>H) Moles de CO₂ transportados en la corriente L2:</b> {moles_CO2_L2:.6f} mol/m³</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+            <p><b>E) Relación molar de equilibrio en fondo (X1*):</b> {X1_star:.6f} mol
