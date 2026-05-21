@@ -243,31 +243,19 @@ if submit_button:
         )
         
     # ==========================================================================
-    # SECCIÓN DE RESULTADOS FINALES (COMPONENTES NATIVOS SEGUROS)
+    # SECCIÓN DE RESULTADOS FINALES POR INCISOS (MÉTODO SEGURO)
     # ==========================================================================
     
     st.markdown("---")
-    st.markdown("<h3 style='color: #0A2540; text-align: center; font-family: sans-serif;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='color: #0A2540; font-family: sans-serif;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
     st.write("Todos los resultados se presentan en notación decimal estándar para su lectura:")
 
-    # Fila 1 de resultados (A, B, C, D)
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        st.metric(label="A) (Ls/Gs)_min (mol/mol)", value=f"{LsGs_min:.4f}")
-    with col2:
-        st.metric(label="B) Y₂ (mol CO₂/mol inerte)", value=f"{Y2:.4f}")
-    with col3:
-        st.metric(label="C) X₂ (mol CO₂/mol sol)", value=f"{X2:.4f}")
-    with col4:
-        st.metric(label="D) Y₁ (mol CO₂/mol inerte)", value=f"{Y1:.4f}")
-
-    # Fila 2 de resultados (E, F, G, H)
-    col5, col6, col7, col8 = st.columns(4)
-    with col5:
-        st.metric(label="E) X₁* (mol CO₂/mol sol)", value=f"{X1_star:.4f}")
-    with col6:
-        st.metric(label="F) Gs (mol/m³)", value=f"{Gs_real:.4f}")
-    with col7:
-        st.metric(label="G) Masa sol. (kg/m³)", value=f"{kg_solucion_m3:.4f}")
-    with col8:
-        st.metric(label="H) Moles CO₂ en L₂ (mol/m³)", value=f"{moles_CO2_L2:.4f}")
+    # Lista limpia por incisos hacia abajo
+    st.markdown(f"**A) Relación líquido/gas mínima (Ls/Gs)_min:** `{LsGs_min:.4f}` mol/mol")
+    st.markdown(f"**B) Relación molar del gas en el domo de la torre (Y₂):** `{Y2:.4f}` mol CO₂/mol inerte")
+    st.markdown(f"**C) Relación molar del líquido a la entrada de la torre (X₂):** `{X2:.4f}` mol CO₂/mol sol")
+    st.markdown(f"**D) Relación molar del gas en el fondo de la torre (Y₁):** `{Y1:.4f}` mol CO₂/mol inerte")
+    st.markdown(f"**E) Relación molar de equilibrio en el fondo (X₁*):** `{X1_star:.4f}` mol CO₂/mol sol")
+    st.markdown(f"**F) Flujo de gas inerte Gs (para 1 m³ de G₁):** `{Gs_real:.4f}` mol/m³")
+    st.markdown(f"**G) Masa de solución por m³ (a {factor_min:.4f} veces):** `{kg_solucion_m3:.4f}` kg/m³")
+    st.markdown(f"**H) Moles de CO₂ transportados en la corriente L₂:** `{moles_CO2_L2:.4f}` mol/m³")
