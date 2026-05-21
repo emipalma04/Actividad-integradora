@@ -24,7 +24,7 @@ with texto_col_centro:
     )
 
 with img_col_der:
-    st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/FCQ.png", width=80)
+    st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/FCQ.png", width=60)
 
 st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bottom: 20px;'>", unsafe_allow_html=True)
 
@@ -243,14 +243,76 @@ if submit_button:
         )
 
     # ==========================================================================
-    # SECCIÓN DE RESULTADOS FINALES RENOVADA
+    # SECCIÓN DE RESULTADOS FINALES EN TARJETAS ESTILIZADAS (CON CSS INCLUIDO)
     # ==========================================================================
     st.markdown("<br><h3 style='color: #0A2540; text-align: center; font-family: sans-serif;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
     
     st.markdown(
         f"""
+        <style>
+            /* Estilos explícitos para asegurar el renderizado de las tarjetas */
+            .contenedor-final {{
+                background-color: #F8FAFC;
+                padding: 25px;
+                border-radius: 12px;
+                border: 1px solid #E2E8F0;
+                box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+                font-family: 'Segoe UI', sans-serif;
+            }}
+            .tarjeta-resultado {{
+                background-color: #FFFFFF;
+                padding: 15px;
+                margin-bottom: 12px;
+                border-radius: 8px;
+                border-left: 5px solid #0A2540;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }}
+            .tarjeta-resultado-acento {{
+                background-color: #FFFDF5;
+                padding: 15px;
+                margin-bottom: 12px;
+                border-radius: 8px;
+                border-left: 5px solid #D4AF37;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }}
+            .texto-inciso {{
+                color: #4A5568;
+                font-size: 14.5px;
+                font-weight: 500;
+                text-align: left;
+            }}
+            .valor-final {{
+                font-family: 'Courier New', monospace;
+                font-weight: bold;
+                font-size: 16px;
+                color: #0A2540;
+                background-color: #F1F5F9;
+                padding: 4px 10px;
+                border-radius: 4px;
+                white-space: nowrap;
+                text-align: right;
+            }}
+            .valor-final-acento {{
+                font-family: 'Courier New', monospace;
+                font-weight: bold;
+                font-size: 16px;
+                color: #8A6D1C;
+                background-color: #FEF3C7;
+                padding: 4px 10px;
+                border-radius: 4px;
+                white-space: nowrap;
+                text-align: right;
+            }}
+        </style>
+
         <div class="contenedor-final">
-            <p style="font-size: 14px; color: #718096; margin-top: 0; margin-bottom: 20px; text-align: center;">Valores de salida optimizados presentados en formato decimal estándar:</p>
+            <p style="font-size: 14px; color: #718096; margin-top: 0; margin-bottom: 20px; text-align: center;">Todos los resultados se presentan en notación decimal estándar para su lectura:</p>
             
             <div class="tarjeta-resultado-acento">
                 <span class="texto-inciso"><b>A)</b> Relación líquido/gas mínima <b>(Ls/Gs)_min</b></span>
@@ -258,17 +320,17 @@ if submit_button:
             </div>
             
             <div class="tarjeta-resultado">
-                <span class="texto-inciso"><b>B)</b> Relación molar en el domo de la torre <b>(Y₂)</b></span>
+                <span class="texto-inciso"><b>B)</b> Relación molar del gas en el domo de la torre <b>(Y₂)</b></span>
                 <span class="valor-final">{Y2:.4f} mol CO₂/mol inerte</span>
             </div>
             
             <div class="tarjeta-resultado">
-                <span class="texto-inciso"><b>C)</b> Relación molar en el domo de la torre <b>(X₂)</b></span>
+                <span class="texto-inciso"><b>C)</b> Relación molar del líquido a la entrada de la torre <b>(X₂)</b></span>
                 <span class="valor-final">{X2:.4f} mol CO₂/mol sol</span>
             </div>
             
             <div class="tarjeta-resultado">
-                <span class="texto-inciso"><b>D)</b> Relación molar en el fondo de la torre <b>(Y₁)</b></span>
+                <span class="texto-inciso"><b>D)</b> Relación molar del gas en el fondo de la torre <b>(Y₁)</b></span>
                 <span class="valor-final">{Y1:.4f} mol CO₂/mol inerte</span>
             </div>
             
