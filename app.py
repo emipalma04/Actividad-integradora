@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 
 # Configuración de la página web
-st.set_page_config(page_title="Simulador CO2 UACH", layout="centered")
+st.set_page_config(page_title="Simulador CO2 UACh", layout="centered")
 
 # ==============================================================================
 # ENCABEZADO LOGOS E INSTITUCIONAL (UACH IZQUIERDA, FCQ DERECHA)
@@ -24,7 +24,7 @@ with texto_col_centro:
     )
 
 with img_col_der:
-    st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/FCQ.png", width=60)
+    st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/FCQ.png", width=80)
 
 st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bottom: 20px;'>", unsafe_allow_html=True)
 
@@ -108,7 +108,7 @@ if submit_button:
     g1_o2_visual = 0.600 if y1_O2_pct == 6.0 else (y1_O2_pct / 10.0)
 
     # ==========================================================================
-    # INYECCIÓN DE CSS AISLADA (Evita errores de sintaxis f-string)
+    # INYECCIÓN DE CSS AISLADA
     # ==========================================================================
     st.markdown(
         """
@@ -127,7 +127,7 @@ if submit_button:
     col_izq, col_der = st.columns(2)
     
     with col_izq:
-        # Bloque de Datos de los Componentes (Fondo azul)
+        # Bloque de Datos de los Componentes ORDENADO
         st.markdown(
             f"""
             <div style="background-color: #E6F0FA; padding: 18px; border-radius: 8px; border-left: 5px solid #0A2540; min-height: 480px;">
@@ -135,8 +135,8 @@ if submit_button:
                 <table class="tabla-resultados">
                     <tr><td class="lbl">PM A (CO2) (g/mol)</td><td class="val">{PM_CO2:.3f}</td></tr>
                     <tr><td class="lbl">PM B (MEA) (g/mol)</td><td class="val">{PM_MEA:.3f}</td></tr>
-                    <tr><td class="lbl">PM O2 (g/mol)</td><td class="val">{PM_O2:.3f}</td></tr>
                     <tr><td class="lbl">PM N2 (g/mol)</td><td class="val">{PM_N2:.3f}</td></tr>
+                    <tr><td class="lbl">PM O2 (g/mol)</td><td class="val">{PM_O2:.3f}</td></tr>
                     <tr><td class="lbl">PM H2O (g/mol)</td><td class="val">{PM_H2O:.3f}</td></tr>
                     <tr><td class="lbl">PM sol prom (g/mol)</td><td class="val">{PM_sol_visual:.3f}</td></tr>
                     <tr><td class="lbl">PT (mmHg)</td><td class="val">{PT_mmHg:.3f}</td></tr>
@@ -152,7 +152,7 @@ if submit_button:
         )
         
     with col_der:
-        # Bloque de Cálculos Intermedios (Fondo amarillo crema)
+        # Bloque de Cálculos Intermedios ORDENADO CRONOLÓGICAMENTE
         st.markdown(
             f"""
             <div style="background-color: #FFF9E6; padding: 18px; border-radius: 8px; border-left: 5px solid #D4AF37; min-height: 480px;">
@@ -160,17 +160,17 @@ if submit_button:
                 <table class="tabla-resultados">
                     <tr><td class="lbl">y1 (fracción mol fondo)</td><td class="val">{y1_CO2:.4f}</td></tr>
                     <tr><td class="lbl">y2 (fracción mol domo)</td><td class="val">{y2_CO2:.4f}</td></tr>
+                    <tr><td class="lbl">Y1 (Relación mol fondo)</td><td class="val">{Y1:.6f}</td></tr>
+                    <tr><td class="lbl">Y2 (Relación mol domo)</td><td class="val">{Y2:.6f}</td></tr>
                     <tr><td class="lbl">PCO2 fondo (atm)</td><td class="val">{P_CO2_fondo_atm:.4f}</td></tr>
-                    <tr><td class="lbl">X1 (Equilibrio)</td><td class="val">{X1_star:.6f}</td></tr>
+                    <tr><td class="lbl">X1* (Equilibrio fondo)</td><td class="val">{X1_star:.6f}</td></tr>
                     <tr><td class="lbl">X2 (Domo)</td><td class="val">{X2:.6f}</td></tr>
-                    <tr><td class="lbl">Y1 (Relación mol)</td><td class="val">{Y1:.6f}</td></tr>
-                    <tr><td class="lbl">Y2 (Relación mol)</td><td class="val">{Y2:.6f}</td></tr>
                     <tr><td class="lbl">(Ls/Gs)_min</td><td class="val">{LsGs_min:.6f}</td></tr>
                     <tr><td class="lbl">(Ls/Gs)_real</td><td class="val">{LsGs_real:.6f}</td></tr>
                     <tr><td class="lbl">Gs 1.2 atm (mol/m³)</td><td class="val">{Gs_real:.6f}</td></tr>
                     <tr><td class="lbl">Ls (mol)</td><td class="val">{Ls_real:.6f}</td></tr>
                     <tr><td class="lbl">moles CO2 en L2 (mol/m³)</td><td class="val">{moles_CO2_L2:.6f}</td></tr>
-                    <tr><td class="lbl">mT (Kg)</td><td class="val">{kg_solucion_m3:.6f}</td></tr>
+                    <tr><td class="lbl">mT (Kg de solución/m³)</td><td class="val">{kg_solucion_m3:.6f}</td></tr>
                 </table>
             </div>
             """,
