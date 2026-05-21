@@ -8,9 +8,9 @@ st.set_page_config(page_title="ACTIVIDAD INTEGRADORA", layout="centered")
 # ENCABEZADO LOGOS E INSTITUCIONAL (UACH IZQUIERDA, FCQ DERECHA)
 # ==============================================================================
 # Usamos URLs genéricas de imágenes que apuntan a logos institucionales de ejemplo. 
-# Nota: Si tienes los links directos exactos de tus imágenes, puedes reemplazar los links de abajo.
+
 logo_uach_url = "Logo UACH.png"
-logo_fcq_url = "https://raw.githubusercontent.com/gpalmach/actividad-integradora/main/fcq.png" # Ruta tentativa en tu repositorio
+logo_fcq_url = "FCQ.png"
 
 st.markdown(
     f"""
@@ -27,10 +27,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown("**MATERIA:** Operaciones Unitarias II")
-st.markdown("**ACTIVIDAD:** Participación #4 (Unidad #3)")
+st.markdown("**ACTIVIDAD INTEGRADORA (U3-P4)**")
 st.markdown("**PROYECTO:** Simulador de Absorbedor de CO₂ en una Torre Empacada")
-st.markdown("**CATEDRÁTICO:** Dr. Ildebrando Pérez Reyes")
+st.markdown("**MATERIA:** Operaciones Unitarias II")
+st.markdown("**DOCENTE:** Dr. Ildebrando Pérez Reyes")
 st.markdown("**ALUMNO:** Gerardo Emiliano Palma Chávez")
 st.markdown("---")
 
@@ -153,7 +153,7 @@ if submit_button:
         )
 
     # ==========================================================================
-    # SECCIÓN DE RESPUESTAS OFICIALES
+    # SECCIÓN DE RESULTADOS
     # ==========================================================================
     st.markdown("<br><h3 style='color: #0A2540;'><b>RESPUESTAS OFICIALES DEL CUESTIONARIO</b></h3>", unsafe_allow_html=True)
     
