@@ -243,14 +243,14 @@ if submit_button:
         )
 
     # ==========================================================================
-    # SECCIÓN DE RESULTADOS FINALES EN TARJETAS ESTILIZADAS (CON CSS INCLUIDO)
+    # SECCIÓN DE RESULTADOS FINALES EN TARJETAS ESTILIZADAS
     # ==========================================================================
     st.markdown("<br><h3 style='color: #0A2540; text-align: center; font-family: sans-serif;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
     
+    # Renderizado directo de los estilos y las tarjetas usando un único bloque markdown con HTML activo
     st.markdown(
         f"""
         <style>
-            /* Estilos explícitos para asegurar el renderizado de las tarjetas */
             .contenedor-final {{
                 background-color: #F8FAFC;
                 padding: 25px;
@@ -258,6 +258,7 @@ if submit_button:
                 border: 1px solid #E2E8F0;
                 box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
                 font-family: 'Segoe UI', sans-serif;
+                margin-top: 15px;
             }}
             .tarjeta-resultado {{
                 background-color: #FFFFFF;
@@ -290,7 +291,7 @@ if submit_button:
             .valor-final {{
                 font-family: 'Courier New', monospace;
                 font-weight: bold;
-                font-size: 16px;
+                font-size: 15px;
                 color: #0A2540;
                 background-color: #F1F5F9;
                 padding: 4px 10px;
@@ -301,7 +302,7 @@ if submit_button:
             .valor-final-acento {{
                 font-family: 'Courier New', monospace;
                 font-weight: bold;
-                font-size: 16px;
+                font-size: 15px;
                 color: #8A6D1C;
                 background-color: #FEF3C7;
                 padding: 4px 10px;
