@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 
 # Configuración de la página web
-st.set_page_config(page_title="Simulador CO2 UACh", layout="centered")
+st.set_page_config(page_title="Simulador CO2 UACH", layout="centered")
 
 # ==============================================================================
 # ENCABEZADO LOGOS E INSTITUCIONAL (UACH IZQUIERDA, FCQ DERECHA)
@@ -24,7 +24,7 @@ with texto_col_centro:
     )
 
 with img_col_der:
-    st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/FCQ.png", width=80)
+    st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/FCQ.png", width=60)
 
 st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bottom: 20px;'>", unsafe_allow_html=True)
 
