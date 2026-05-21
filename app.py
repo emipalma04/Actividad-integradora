@@ -24,7 +24,7 @@ with texto_col_centro:
     )
 
 with img_col_der:
-    st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/FCQ.png", width=60)
+    st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/FCQ.png", width=80)
 
 st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bottom: 20px;'>", unsafe_allow_html=True)
 
@@ -245,6 +245,7 @@ if submit_button:
     # ==========================================================================
     # SECCIÓN DE RESULTADOS FINALES (CUADROS INDEPENDIENTES EN MORADO CLARO)
     # ==========================================================================
+    
     st.markdown("---")
     st.markdown("<h3 style='color: #0A2540; font-family: sans-serif;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
     
@@ -284,4 +285,4 @@ if submit_button:
     
     st.markdown(f'<div class="tarjeta-morada-individual"><b>G)</b> Masa de solución por m³ (a {factor_min:.4f} veces): {kg_solucion_m3:.4f} kg/m³</div>', unsafe_allow_html=True)
     
-    st.markdown(f'<div class="tarjeta-morada-individual"><b>H)</b> Moles de CO₂ transportados en la corriente L₂: {moles_CO2_L2:.4f} m
+    st.markdown(f'<div class="tarjeta-morada-individual"><b>H)</b> Moles de CO₂ transportados en la corriente L₂: {moles_CO2_L2:.4f} mol/m³</div>', unsafe_allow_html=True)
