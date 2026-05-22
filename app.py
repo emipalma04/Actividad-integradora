@@ -199,7 +199,7 @@ if submit_button:
     st.markdown(
         f"""
             <div style="background-color: #F2F4F8; padding: 20px; border-radius: 8px; border-left: 5px solid #4A5568; min-height: 530px;">
-                <h3 style="color: #2D3748; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Datos Ingresados</b></h3>
+                <h3 style="color: #2D3748; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Datos ingresados</b></h3>
                 <table class="tabla-resultados">
                     <tr><td class="lbl">Concentración MEA (% peso)</td><td class="val">{C_MEA:.4f}</td></tr>
                     <tr><td class="lbl">Gas Entrada: CO₂ (% vol)</td><td class="val">{y1_CO2_pct:.4f}</td></tr>
