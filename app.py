@@ -245,123 +245,22 @@ if submit_button:
     # ==========================================================================
     # TABLA RESUMEN DE RESPUESTAS (DISEÑO TOTALMENTE PINTADO EN MORADO PASTEL)
     # ==========================================================================
+    
     st.markdown(
-        """
-        <style>
-            /* Contenedor principal con el fondo morado pastel */
-            .tarjeta-morada-pastel {
-                background-color: #F4EFFF; /* Fondo morado pastel suave */
-                padding: 24px; 
-                border-radius: 8px; 
-                border-left: 5px solid #9061F9; /* Línea lateral morada de control */
-                margin-top: 20px;
-                margin-bottom: 25px;
-                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
-            }
-            
-            /* Estructura de la tabla técnica */
-            .tabla-morada-elegante {
-                width: 100%;
-                border-collapse: collapse;
-                font-family: 'Segoe UI', sans-serif;
-                table-layout: fixed;
-                background-color: #F4EFFF; /* Forzar a la tabla completa a estar pintada */
-            }
-            
-            /* Estilo de los encabezados internos */
-            .tabla-morada-elegante th {
-                color: #5521B5; /* Texto morado oscuro para contraste */
-                font-weight: 700;
-                text-align: left;
-                padding-bottom: 12px;
-                border-bottom: 2px solid rgba(144, 97, 249, 0.3);
-                font-size: 14px;
-                letter-spacing: 0.5px;
-                background-color: #F4EFFF; /* Pintado igual */
-            }
-            
-            /* Celdas de la tabla con fondo explícito para evitar transparencias blancas */
-            .tabla-morada-elegante td {
-                padding: 12px 8px;
-                border-bottom: 1px solid rgba(144, 97, 249, 0.15); /* Separador sutil */
-                font-size: 14px;
-                vertical-align: middle;
-                background-color: #F4EFFF; /* Mismo fondo para que toda esté pintada */
-            }
-            
-            .tabla-morada-elegante tr:last-child td {
-                border-bottom: none; /* Cierre limpio */
-            }
-            
-            /* Control del texto y valores numéricos */
-            .txt-parametro {
-                color: #2D3748;
-                width: 65%;
-                word-wrap: break-word;
-                font-weight: 500;
-            }
-            
-            .num-valor-unidad {
-                text-align: right;
-                font-family: 'Courier New', monospace;
-                font-weight: bold;
-                color: #111827;
-                width: 35%;
-                white-space: nowrap;
-            }
-        </style>
-        
-        <div class="tarjeta-morada-pastel">
-            <h3 style="color: #4C1D95; margin-top: 0; margin-bottom: 18px; font-family: sans-serif; letter-spacing: -0.5px;">
-                <b>Resultados del Balance de Materia</b>
-            </h3>
-            <table class="tabla-morada-elegante">
-                <thead>
-                    <tr>
-                        <th>Parámetro Solicitado</th>
-                        <th style="text-align: right;">Valor Calculado / Unidades</th>
-                    </tr>
-                </thead>
-                <tbody>
+        f"""
+        <div style="background-color: #F4EFFF; padding: 20px; border-radius: 8px; border-left: 5px solid #9061F9; min-height: 430px;">
+            <h3 style="color: #4C1D95; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Resultados del Balance de Materia</b></h3>
+            <table class="tabla-resultados" style="width: 100%; border-collapse: collapse; background-color: transparent;">
+                <tr><td class="lbl">Relación líquido/gas mínima (Ls-min/Gs)</td><td class="val">{LsGs_min:.4f} mol/mol</td></tr>
+                <tr><td class="lbl">Relación molar del gas de salida en la parte superior de la torre (Y₂)</td><td class="val">{Y2:.4f} mol CO₂/mol inerte</td></tr>
+                <tr><td class="lbl">Relación molar del líquido de entrada en la parte superior de la torre (X₂)</td><td class="val">{X2:.4f} mol CO₂/mol sol</td></tr>
+                <tr><td class="lbl">Relación molar del gas de entrada en la parte inferior de la torre (Y₁)</td><td class="val">{Y1:.4f} mol CO₂/mol inerte</td></tr>
+                <tr><td class="lbl">Relación molar de equilibrio teórico en la parte inferior (X₁*)</td><td class="val">{X1_star:.4f} mol CO₂/mol sol</td></tr>
+                <tr><td class="lbl">Flujo molar de gas inerte real Gs por unidad de volumen</td><td class="val">{Gs_real:.4f} mol/m³</td></tr>
+                <tr><td class="lbl">Masa total requerida de solución absorbente por unidad de volumen (al exceso seleccionado)</td><td class="val">{kg_solucion_m3:.4f} kg/m³</td></tr>
+                <tr><td class="lbl">Moles de CO₂ transportados en la corriente de líquido alimentada por la parte superior L₂</td><td class="val">{moles_CO2_L2:.4f} mol/m³</td></tr>
+            </table>
+        </div>
         """,
         unsafe_allow_html=True
     )
-
-    # Inyección de las filas de datos con fondo unificado
-    st.markdown(f'''
-                <tr>
-                    <td class="txt-parametro">Relación líquido/gas mínima (Ls-min/Gs)</td>
-                    <td class="num-valor-unidad">{LsGs_min:.4f} mol/mol</td>
-                </tr>
-                <tr>
-                    <td class="txt-parametro">Relación molar del gas de salida en la parte superior de la torre (Y₂)</td>
-                    <td class="num-valor-unidad">{Y2:.4f} mol CO₂/mol inerte</td>
-                </tr>
-                <tr>
-                    <td class="txt-parametro">Relación molar del líquido de entrada en la parte superior de la torre (X₂)</td>
-                    <td class="num-valor-unidad">{X2:.4f} mol CO₂/mol sol</td>
-                </tr>
-                <tr>
-                    <td class="txt-parametro">Relación molar del gas de entrada en la parte inferior de la torre (Y₁)</td>
-                    <td class="num-valor-unidad">{Y1:.4f} mol CO₂/mol inerte</td>
-                </tr>
-                <tr>
-                    <td class="txt-parametro">Relación molar de equilibrio teórico en la parte inferior (X₁*)</td>
-                    <td class="num-valor-unidad">{X1_star:.4f} mol CO₂/mol sol</td>
-                </tr>
-                <tr>
-                    <td class="txt-parametro">Flujo molar de gas inerte real Gs por unidad de volumen</td>
-                    <td class="num-valor-unidad">{Gs_real:.4f} mol/m³</td>
-                </tr>
-                <tr>
-                    <td class="txt-parametro">Masa total requerida de solución absorbente por unidad de volumen (al exceso seleccionado)</td>
-                    <td class="num-valor-unidad">{kg_solucion_m3:.4f} kg/m³</td>
-                </tr>
-                <tr>
-                    <td class="txt-parametro">Moles de CO₂ transportados en la corriente de líquido alimentada por la parte superior L₂</td>
-                    <td class="num-valor-unidad">{moles_CO2_L2:.4f} mol/m³</td>
-                </tr>
-    ''', unsafe_allow_html=True)
-
-    # Cierre definitivo
-    st.markdown("</tbody></table></div>", unsafe_allow_html=True)
