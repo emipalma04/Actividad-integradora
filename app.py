@@ -102,7 +102,6 @@ with st.form("simulador_form"):
 st.warning(
     "⚠️ Aviso: La forma en que se muestran los números decimales puede cambiar según la configuración regional del equipo utilizado, empleando coma (,) o punto (.) como separador decimal. Esta diferencia solo afecta la visualización y no modifica los cálculos ni los resultados obtenidos."
 )
-)
     
     submit_button = st.form_submit_button(label="Correr simulación")
 
