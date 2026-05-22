@@ -227,8 +227,8 @@ if submit_button:
                     <tr><td class="lbl">Relación molar en la parte superior (X₂)</td><td class="val">{X2:.4f}</td></tr>
                     <tr><td class="lbl">Relación molar en la parte inferior (Y₁)</td><td class="val">{Y1:.4f}</td></tr>
                     <tr><td class="lbl">Relación molar en la parte superior (Y₂)</td><td class="val">{Y2:.4f}</td></tr>
-                    <tr><td class="lbl">Relación Líquido/Gas mínima (Ls/Gs)_min</td><td class="val">{LsGs_min:.4f}</td></tr>
-                    <tr><td class="lbl">Relación Líquido/Gas operacional (Ls/Gs)_real</td><td class="val">{LsGs_real:.4f}</td></tr>
+                    <tr><td class="lbl">Relación Líquido/Gas mínima (Ls/Gs)<sub>min</sub></td><td class="val">{LsGs_min:.4f}</td></tr>
+                    <tr><td class="lbl">Relación Líquido/Gas operacional (Ls/Gs)<sub>real</sub></td><td class="val">{LsGs_real:.4f}</td></tr>
                     <tr><td class="lbl">Gas inerte estándar Gs a 1.0 atm (mol/m³)</td><td class="val">{Gs_1atm:.4f}</td></tr>
                     <tr><td class="lbl">Gas inerte de operación Gs a 1.2 atm (mol/m³)</td><td class="val">{Gs_real:.4f}</td></tr>
                     <tr><td class="lbl">Flujo molar del solvente inerte Ls (mol)</td><td class="val">{Ls_real:.4f}</td></tr>
