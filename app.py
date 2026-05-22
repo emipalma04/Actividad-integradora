@@ -50,9 +50,14 @@ st.info(
     "Por ejemplo, si desea ingresar un treinta por ciento, introduzca **30.0** (no escriba 0.3)."
 )
 
-# DIAGRAMA DE FLUJO DE LA TORRE DE ABSORCIÓN (Apoyo visual requerido por la rúbrica)
+st.warning(
+    "📌 **Nota de diseño:** Los valores numéricos precargados de forma predeterminada en el formulario "
+    "corresponden exactamente a las especificaciones y datos base del ejercicio clásico U3-P4."
+)
+
+# DIAGRAMA DE FLUJO EN INGLÉS (Apoyo visual requerido por la rúbrica)
 st.markdown("---")
-st.markdown("<h4 style='color: #0A2540; text-align: center;'>Diagrama de Flujo: Torre de Absorción Empacada</h4>", unsafe_allow_html=True)
+st.markdown("<h4 style='color: #0A2540; text-align: center;'>Absorption of $CO_2$ in a packed absorber</h4>", unsafe_allow_html=True)
 st.write(
     "Como apoyo para la interpretación de los resultados y balances, el siguiente diagrama ilustra "
     "el flujo a contracorriente de la torre, donde el gas alimentado asciende desde la parte inferior "
@@ -60,7 +65,7 @@ st.write(
 )
 
 # Insertamos la imagen del diagrama de flujo como soporte conceptual
-st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/Diagrama%20Torre.png", caption="Figura 1: Diagrama de flujo a contracorriente de una columna empacada de absorción gas-líquido.", use_container_width=True)
+st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/Diagrama%20Torre.png", caption="Figura 1: Absorption of CO2 in a packed absorber (Countercurrent flow).", use_container_width=True)
 st.markdown("---")
 
 
@@ -215,7 +220,7 @@ if submit_button:
                     <tr><td class="lbl">Relación Líquido/Gas mínima (Ls/Gs)_min</td><td class="val">{LsGs_min:.4f}</td></tr>
                     <tr><td class="lbl">Relación Líquido/Gas operacional (Ls/Gs)_real</td><td class="val">{LsGs_real:.4f}</td></tr>
                     <tr><td class="lbl">Gas inerte estándar Gs a 1.0 atm (mol/m³)</td><td class="val">{Gs_1atm:.4f}</td></tr>
-                    <tr><td class="lbl">Gas inerte de operación Gs a 1.2 atm (mol/m³)</td><td class="val">{Gs_real:.4f}</td></tr>
+                    <tr><td class="lbl">Gas inerte de operation Gs a 1.2 atm (mol/m³)</td><td class="val">{Gs_real:.4f}</td></tr>
                     <tr><td class="lbl">Flujo molar del solvente inerte Ls (mol)</td><td class="val">{Ls_real:.4f}</td></tr>
                     <tr><td class="lbl">Masa total de la solución absorbente (kg)</td><td class="val">{kg_solucion_m3:.4f}</td></tr>
                 </table>
