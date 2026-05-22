@@ -62,7 +62,7 @@ st.warning(
 st.markdown("---")
 st.markdown(
     "<h4 style='color: #0A2540; text-align: center;'>"
-    "Esquema del Sistema "
+    "Esquema del sistema "
     "</h4>",
     unsafe_allow_html=True
 )
@@ -203,12 +203,12 @@ if submit_button:
             <div style="background-color: #E6F0FA; padding: 20px; border-radius: 8px; border-left: 5px solid #0A2540; min-height: 530px;">
                 <h3 style="color: #0A2540; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Datos de los componentes</b></h3>
                 <table class="tabla-resultados">
-                    <tr><td class="lbl">PM de CO₂ (g/mol)</td><td class="val">{PM_CO2:.4f}</td></tr>
-                    <tr><td class="lbl">PM de MEA (g/mol)</td><td class="val">{PM_MEA:.4f}</td></tr>
-                    <tr><td class="lbl">PM de O₂ (g/mol)</td><td class="val">{PM_O2:.4f}</td></tr>
-                    <tr><td class="lbl">PM de N₂ (g/mol)</td><td class="val">{PM_N2:.4f}</td></tr>
-                    <tr><td class="lbl">PM del H₂O (g/mol)</td><td class="val">{PM_H2O:.4f}</td></tr>
-                    <tr><td class="lbl">PM promedio de la solución (g/mol)</td><td class="val">{PM_sol_visual:.4f}</td></tr>
+                    <tr><td class="lbl">Peso molecular del CO₂ (g/mol)</td><td class="val">{PM_CO2:.4f}</td></tr>
+                    <tr><td class="lbl">Peso molecular del monoetanolamina (MEA) (g/mol)</td><td class="val">{PM_MEA:.4f}</td></tr>
+                    <tr><td class="lbl">Peso molecular del O₂ (g/mol)</td><td class="val">{PM_O2:.4f}</td></tr>
+                    <tr><td class="lbl">Peso molecular del N₂ (g/mol)</td><td class="val">{PM_N2:.4f}</td></tr>
+                    <tr><td class="lbl">Peso molecular del H₂O (g/mol)</td><td class="val">{PM_H2O:.4f}</td></tr>
+                    <tr><td class="lbl">Peso molecular promedio de la solución (g/mol)</td><td class="val">{PM_sol_visual:.4f}</td></tr>
                     <tr><td class="lbl">Presión total del sistema (atm)</td><td class="val">1.2000</td></tr>
                     <tr><td class="lbl">Presión total del sistema (mmHg)</td><td class="val">{PT_mmHg:.4f}</td></tr>
                     <tr><td class="lbl">Presión parcial de CO₂ en la parte inferior (mmHg)</td><td class="val">{P_CO2_fondo:.4f}</td></tr>
