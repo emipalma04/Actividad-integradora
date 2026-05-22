@@ -192,30 +192,7 @@ if submit_button:
     )
 
     st.markdown("---")
-
-    # ==========================================================================
-    # BLOQUE SUPERIOR: Datos Ingresados (Ancho Completo)
-    # ==========================================================================
-    st.markdown(
-        f"""
-            <div style="background-color: #F2F4F8; padding: 20px; border-radius: 8px; border-left: 5px solid #4A5568; min-height: 530px;">
-                <h3 style="color: #2D3748; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Datos ingresados</b></h3>
-                <table class="tabla-resultados">
-                    <tr><td class="lbl">Concentración MEA (% peso)</td><td class="val">{C_MEA:.4f}</td></tr>
-                    <tr><td class="lbl">Gas Entrada: CO₂ (% vol)</td><td class="val">{y1_CO2_pct:.4f}</td></tr>
-                    <tr><td class="lbl">Gas Entrada: O₂ (% vol)</td><td class="val">{y1_O2_pct:.4f}</td></tr>
-                    <tr><td class="lbl">Gas Entrada: N₂ (% vol)</td><td class="val">{y1_N2_pct:.4f}</td></tr>
-                    <tr><td class="lbl">Concentración Líquido entrada (x₂)</td><td class="val">{x2_input:.4f}</td></tr>
-                    <tr><td class="lbl">Multiplicador de exceso (Factor)</td><td class="val">{factor_min:.4f}</td></tr>
-                    <tr><td class="lbl">Gas Salida Deseado: CO₂ (% vol)</td><td class="val">{y2_CO2_pct:.4f}</td></tr>
-                    <tr><td class="lbl">Temperatura base (°C)</td><td class="val">25.0000</td></tr>
-                    <tr><td class="lbl">Presión del sistema (atm)</td><td class="val">1.2000</td></tr>
-                </table>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-        
+  
     # Dividimos la sección en 2 columnas iguales
     
     col_izq, col_der = st.columns(2)
