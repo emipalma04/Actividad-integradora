@@ -81,7 +81,7 @@ st.markdown("---")
 # FORMULARIO DE ENTRADAS DE DISEÑO
 # ==============================================================================
 with st.form("simulador_form"):
-    st.write("#### :purple[Variables de entrada del proceso")
+    st.write("#### :blue[Variables de entrada del proceso")
     
     C_MEA = st.number_input("Concentración inicial de la solución de MEA (% en peso)", min_value=0.0, max_value=100.0, value=30.0, step=1.0, format="%.4f")
     
