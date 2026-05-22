@@ -62,8 +62,8 @@ st.warning(
 st.markdown("---")
 st.markdown(
     "<h4 style='color: #0A2540; text-align: center;'>"
-    "Absorption of $CO_2$ in a Packed Absorber / "
-    "Absorción de $CO_2$ en una Torre Empacada"
+    "Absorption of CO₂ in a Packed Absorber / "
+    "Absorción de CO₂ en una Torre Empacada"
     "</h4>",
     unsafe_allow_html=True
 )
