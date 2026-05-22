@@ -93,9 +93,11 @@ with st.form("simulador_form"):
     st.markdown("<h4 style='color: #0A2540;'>Condiciones de Operación y Especificaciones de Salida</h4>", unsafe_allow_html=True)
     x2_input = st.number_input("Concentración de $CO_2$ en el líquido de entrada en la Parte Superior ($x_2$, mol CO₂/mol sol)", min_value=0.0, max_value=1.0, value=0.0580, format="%.4f")
     factor_min = st.number_input("Multiplicador de exceso para la relación real (Factor respecto a $L_{s-min}/G_s$)", min_value=1.0, max_value=5.0, value=1.2000, step=0.1, format="%.4f")
-    y2_CO2_pct = st.number_input("Concentración residual de $CO_2$ deseada en el gas de salida por la Parte Superior (% vol, ej. 2.0 = 2%)", min_value=0.0, max_value=100.0, value=2.0, format="%.4f")
+    y2_CO2_pct = st.number_input("Concentración residual de $CO_2$ deseada en el gas de salida por la Parte Superior (% vol)", min_value=0.0, max_value=100.0, value=2.0, format="%.4f")
     
-    st.markdown("<small>*Nota de diseño: De acuerdo con los requerimientos fijos del modelo simplificado, las condiciones térmicas y de presión se establecen en 25 °C y 1.2 atm.*</small>", unsafe_allow_html=True)
+    st.warning(
+    "📌 **Nota:** De acuerdo con los requerimientos fijos del modelo simplificado, las condiciones térmicas y de presión se establecen en 25 °C y 1.2 atm. "
+)
     
     submit_button = st.form_submit_button(label="Correr simulación")
 
