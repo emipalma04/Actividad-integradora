@@ -105,7 +105,7 @@ st.warning(
     "Esto no afecta los cálculos realizados ni los resultados generados por el modelo."
 )
     
-    submit_button = st.form_submit_button(label="Correr simulación")
+submit_button = st.form_submit_button(label="Correr simulación")
 
 # ==============================================================================
 # ALGORITMO MATEMÁTICO Y BALANCES DE MATERIA
