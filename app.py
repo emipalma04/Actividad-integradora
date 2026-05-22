@@ -40,7 +40,7 @@ st.markdown("---")
 # ==============================================================================
 # GUÍA DE USO Y DIAGRAMA DE FLUJO DE APOYO
 # ==============================================================================
-st.markdown("<h3 style='color: #0A2540;'>Instrucciones de Operación</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='color: #0A2540;'>Instrucciones de operación</h3>", unsafe_allow_html=True)
 st.write(
     "Este simulador automatiza el cálculo de las condiciones operacionales y relaciones de equilibrio para una columna de absorción empacada. "
     "El programa permite evaluar la sensibilidad del proceso modificando dinámicamente la concentración del solvente, "
