@@ -245,7 +245,7 @@ if submit_button:
     # ==========================================================================
     # TABLA RESUMEN DE RESPUESTAS (DISEÑO TOTALMENTE PINTADO EN MORADO PASTEL)
     # ==========================================================================
-    st.markdown("<h3 style='color: #0A2540;'>Sección de resultados</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='color: #0A2540;'> </h3>", unsafe_allow_html=True)
     
     st.markdown(
         f"""
