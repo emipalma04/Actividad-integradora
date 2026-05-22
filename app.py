@@ -243,17 +243,17 @@ if submit_button:
         )
         
     # ==========================================================================
-    # TABLA RESUMEN DE RESPUESTAS (DISEÑO INTEGRAL MORADO PASTEL)
+    # TABLA RESUMEN DE RESPUESTAS (DISEÑO TOTALMENTE PINTADO EN MORADO PASTEL)
     # ==========================================================================
     st.markdown(
         """
         <style>
-            /* Contenedor principal con el borde izquierdo característico */
+            /* Contenedor principal con el fondo morado pastel */
             .tarjeta-morada-pastel {
-                background-color: #F4EFFF; /* Fondo morado pastel muy suave */
+                background-color: #F4EFFF; /* Fondo morado pastel suave */
                 padding: 24px; 
                 border-radius: 8px; 
-                border-left: 5px solid #9061F9; /* Línea lateral morada clara */
+                border-left: 5px solid #9061F9; /* Línea lateral morada de control */
                 margin-top: 20px;
                 margin-bottom: 25px;
                 box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
@@ -265,6 +265,7 @@ if submit_button:
                 border-collapse: collapse;
                 font-family: 'Segoe UI', sans-serif;
                 table-layout: fixed;
+                background-color: #F4EFFF; /* Forzar a la tabla completa a estar pintada */
             }
             
             /* Estilo de los encabezados internos */
@@ -276,21 +277,23 @@ if submit_button:
                 border-bottom: 2px solid rgba(144, 97, 249, 0.3);
                 font-size: 14px;
                 letter-spacing: 0.5px;
+                background-color: #F4EFFF; /* Pintado igual */
             }
             
-            /* Celdas de la tabla */
+            /* Celdas de la tabla con fondo explícito para evitar transparencias blancas */
             .tabla-morada-elegante td {
                 padding: 12px 8px;
                 border-bottom: 1px solid rgba(144, 97, 249, 0.15); /* Separador sutil */
                 font-size: 14px;
                 vertical-align: middle;
+                background-color: #F4EFFF; /* Mismo fondo para que toda esté pintada */
             }
             
             .tabla-morada-elegante tr:last-child td {
-                border-bottom: none; /* Cierre limpio sin línea al final */
+                border-bottom: none; /* Cierre limpio */
             }
             
-            /* Clases para el control del texto y los valores numéricos */
+            /* Control del texto y valores numéricos */
             .txt-parametro {
                 color: #2D3748;
                 width: 65%;
@@ -324,7 +327,7 @@ if submit_button:
         unsafe_allow_html=True
     )
 
-    # Inyección de las filas de datos sin incisos
+    # Inyección de las filas de datos con fondo unificado
     st.markdown(f'''
                 <tr>
                     <td class="txt-parametro">Relación líquido/gas mínima (Ls-min/Gs)</td>
@@ -360,5 +363,5 @@ if submit_button:
                 </tr>
     ''', unsafe_allow_html=True)
 
-    # Cierre de la estructura HTML
+    # Cierre definitivo
     st.markdown("</tbody></table></div>", unsafe_allow_html=True)
