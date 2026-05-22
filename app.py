@@ -192,14 +192,12 @@ if submit_button:
     )
 
     st.markdown("---")
-# Dividimos la sección en 3 columnas iguales
-    
-    col_datos, col_izq, col_der = st.columns(3)
-    
-    # NUEVA COLUMNA: Datos Ingresados por el Usuario
-    with col_datos:
-        st.markdown(
-            f"""
+
+    # ==========================================================================
+    # BLOQUE SUPERIOR: Datos Ingresados (Ancho Completo)
+    # ==========================================================================
+    st.markdown(
+        f"""
             <div style="background-color: #F2F4F8; padding: 20px; border-radius: 8px; border-left: 5px solid #4A5568; min-height: 530px;">
                 <h3 style="color: #2D3748; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Datos Ingresados</b></h3>
                 <table class="tabla-resultados">
@@ -217,6 +215,10 @@ if submit_button:
             """,
             unsafe_allow_html=True
         )
+        
+    # Dividimos la sección en 2 columnas iguales
+    
+    col_izq, col_der = st.columns(2)
     
     with col_izq:
         st.markdown(
