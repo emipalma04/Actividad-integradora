@@ -29,7 +29,9 @@ with img_col_der:
 st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bottom: 20px;'>", unsafe_allow_html=True)
 
 # Título del Proyecto Integrador y Datos del Estudiante (Conforme a la Portada Oficial)
-st.markdown("<h2 style='color: #0A2540; font-family: sans-serif; font-size: 24px; margin-bottom: 15px;'><b> Solución automatizada y análisis analítico del sistema de absorción de $CO_2$ mediante soluciones acuosas de Monoetanolamina (MEA)</b></h2>", unsafe_allow_html=True)
+
+st.markdown("<h2 style='color: #0A2540; font-family: sans-serif; font-size: 24px; margin-bottom: 15px;'><b> ACTIVIDAD INTEGRADORA</b></h2>", unsafe_allow_html=True)
+st.markdown("**PROYECTO:** Automatización y análisis del proceso de absorción de CO₂ usando soluciones acuosas de monoetanolamina (MEA)")
 st.markdown("**Materia:** Operaciones Unitarias II")
 st.markdown("**Docente:** Dr. Ildebrando Pérez Reyes")
 st.markdown("**Desarrollado por:** Gerardo Emiliano Palma Chávez")
