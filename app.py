@@ -198,7 +198,7 @@ if submit_button:
         st.markdown(
             f"""
             <div style="background-color: #E6F0FA; padding: 20px; border-radius: 8px; border-left: 5px solid #0A2540; min-height: 530px;">
-                <h3 style="color: #0A2540; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Parámetros de los Componentes</b></h3>
+                <h3 style="color: #0A2540; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Datos de los componentes</b></h3>
                 <table class="tabla-resultados">
                     <tr><td class="lbl">PM de CO₂ (g/mol)</td><td class="val">{PM_CO2:.4f}</td></tr>
                     <tr><td class="lbl">PM de MEA (g/mol)</td><td class="val">{PM_MEA:.4f}</td></tr>
@@ -221,7 +221,7 @@ if submit_button:
         st.markdown(
             f"""
             <div style="background-color: #FFF9E6; padding: 20px; border-radius: 8px; border-left: 5px solid #D4AF37; min-height: 530px;">
-                <h3 style="color: #8A6D1C; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Balances e Intermedios</b></h3>
+                <h3 style="color: #8A6D1C; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Cálculos intermedios</b></h3>
                 <table class="tabla-resultados">
                     <tr><td class="lbl">Composición de equilibrio (X₁*)</td><td class="val">{X1_star:.4f}</td></tr>
                     <tr><td class="lbl">Relación molar en la parte superior (X₂)</td><td class="val">{X2:.4f}</td></tr>
