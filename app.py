@@ -243,110 +243,122 @@ if submit_button:
         )
         
     # ==========================================================================
-    # TABLA RESUMEN DE RESPUESTAS FINALES (ESTILO INSTITUCIONAL MORADO)
+    # TABLA RESUMEN DE RESPUESTAS (DISEÑO INTEGRAL MORADO PASTEL)
     # ==========================================================================
     st.markdown(
         """
         <style>
-            /* Contenedor principal con borde izquierdo y esquinas redondeadas */
-            .contenedor-evaluacion {
-                background-color: #F9F5FF; /* Morado sumamente bajito/tenue */
-                padding: 22px; 
+            /* Contenedor principal con el borde izquierdo característico */
+            .tarjeta-morada-pastel {
+                background-color: #F4EFFF; /* Fondo morado pastel muy suave */
+                padding: 24px; 
                 border-radius: 8px; 
-                border-left: 5px solid #7C3AED; /* Borde morado fuerte característico */
+                border-left: 5px solid #9061F9; /* Línea lateral morada clara */
                 margin-top: 20px;
                 margin-bottom: 25px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
             }
             
-            /* Ajustes finos de la tabla interna */
-            .tabla-evaluacion-bonita {
+            /* Estructura de la tabla técnica */
+            .tabla-morada-elegante {
                 width: 100%;
                 border-collapse: collapse;
                 font-family: 'Segoe UI', sans-serif;
                 table-layout: fixed;
             }
-            .tabla-evaluacion-bonita td {
-                padding: 11px 8px;
-                border-bottom: 1px solid rgba(124, 58, 237, 0.08); /* Línea divisoria sutil */
+            
+            /* Estilo de los encabezados internos */
+            .tabla-morada-elegante th {
+                color: #5521B5; /* Texto morado oscuro para contraste */
+                font-weight: 700;
+                text-align: left;
+                padding-bottom: 12px;
+                border-bottom: 2px solid rgba(144, 97, 249, 0.3);
+                font-size: 14px;
+                letter-spacing: 0.5px;
+            }
+            
+            /* Celdas de la tabla */
+            .tabla-morada-elegante td {
+                padding: 12px 8px;
+                border-bottom: 1px solid rgba(144, 97, 249, 0.15); /* Separador sutil */
                 font-size: 14px;
                 vertical-align: middle;
             }
-            .tabla-evaluacion-bonita tr:last-child td {
-                border-bottom: none; /* Quita la última línea para cerrar limpio */
+            
+            .tabla-morada-elegante tr:last-child td {
+                border-bottom: none; /* Cierre limpio sin línea al final */
             }
             
-            /* Identificadores de fila y alineaciones */
-            .inciso-morado {
-                font-weight: bold;
-                color: #7C3AED;
-                width: 8%;
-            }
-            .descripcion-pregunta {
+            /* Clases para el control del texto y los valores numéricos */
+            .txt-parametro {
                 color: #2D3748;
-                width: 62%;
+                width: 65%;
                 word-wrap: break-word;
+                font-weight: 500;
             }
-            .val-unidades-evaluacion {
+            
+            .num-valor-unidad {
                 text-align: right;
                 font-family: 'Courier New', monospace;
                 font-weight: bold;
-                color: #1A202C;
-                width: 30%;
+                color: #111827;
+                width: 35%;
                 white-space: nowrap;
             }
         </style>
         
-        <div class="contenedor-evaluacion">
-            <h3 style="color: #6D28D9; margin-top: 0; margin-bottom: 20px; font-family: sans-serif;"><b>Resultados de Evaluación</b></h3>
-            <table class="tabla-evaluacion-bonita">
+        <div class="tarjeta-morada-pastel">
+            <h3 style="color: #4C1D95; margin-top: 0; margin-bottom: 18px; font-family: sans-serif; letter-spacing: -0.5px;">
+                <b>Resultados del Balance de Materia</b>
+            </h3>
+            <table class="tabla-morada-elegante">
+                <thead>
+                    <tr>
+                        <th>Parámetro Solicitado</th>
+                        <th style="text-align: right;">Valor Calculado / Unidades</th>
+                    </tr>
+                </thead>
+                <tbody>
         """,
         unsafe_allow_html=True
     )
 
-    # Inyección de las filas con las variables del balance de materia
+    # Inyección de las filas de datos sin incisos
     st.markdown(f'''
                 <tr>
-                    <td class="inciso-morado">A)</td>
-                    <td class="descripcion-pregunta">Relación líquido/gas mínima (Ls-min/Gs)</td>
-                    <td class="val-unidades-evaluacion">{LsGs_min:.4f} mol/mol</td>
+                    <td class="txt-parametro">Relación líquido/gas mínima (Ls-min/Gs)</td>
+                    <td class="num-valor-unidad">{LsGs_min:.4f} mol/mol</td>
                 </tr>
                 <tr>
-                    <td class="inciso-morado">B)</td>
-                    <td class="descripcion-pregunta">Relación molar del gas de salida en la parte superior de la torre (Y₂)</td>
-                    <td class="val-unidades-evaluacion">{Y2:.4f} mol CO₂/mol inerte</td>
+                    <td class="txt-parametro">Relación molar del gas de salida en la parte superior de la torre (Y₂)</td>
+                    <td class="num-valor-unidad">{Y2:.4f} mol CO₂/mol inerte</td>
                 </tr>
                 <tr>
-                    <td class="inciso-morado">C)</td>
-                    <td class="descripcion-pregunta">Relación molar del líquido de entrada en la parte superior de la torre (X₂)</td>
-                    <td class="val-unidades-evaluacion">{X2:.4f} mol CO₂/mol sol</td>
+                    <td class="txt-parametro">Relación molar del líquido de entrada en la parte superior de la torre (X₂)</td>
+                    <td class="num-valor-unidad">{X2:.4f} mol CO₂/mol sol</td>
                 </tr>
                 <tr>
-                    <td class="inciso-morado">D)</td>
-                    <td class="descripcion-pregunta">Relación molar del gas de entrada en la parte inferior de la torre (Y₁)</td>
-                    <td class="val-unidades-evaluacion">{Y1:.4f} mol CO₂/mol inerte</td>
+                    <td class="txt-parametro">Relación molar del gas de entrada en la parte inferior de la torre (Y₁)</td>
+                    <td class="num-valor-unidad">{Y1:.4f} mol CO₂/mol inerte</td>
                 </tr>
                 <tr>
-                    <td class="inciso-morado">E)</td>
-                    <td class="descripcion-pregunta">Relación molar de equilibrio teórico en la parte inferior (X₁*)</td>
-                    <td class="val-unidades-evaluacion">{X1_star:.4f} mol CO₂/mol sol</td>
+                    <td class="txt-parametro">Relación molar de equilibrio teórico en la parte inferior (X₁*)</td>
+                    <td class="num-valor-unidad">{X1_star:.4f} mol CO₂/mol sol</td>
                 </tr>
                 <tr>
-                    <td class="inciso-morado">F)</td>
-                    <td class="descripcion-pregunta">Flujo molar de gas inerte real Gs por unidad de volumen</td>
-                    <td class="val-unidades-evaluacion">{Gs_real:.4f} mol/m³</td>
+                    <td class="txt-parametro">Flujo molar de gas inerte real Gs por unidad de volumen</td>
+                    <td class="num-valor-unidad">{Gs_real:.4f} mol/m³</td>
                 </tr>
                 <tr>
-                    <td class="inciso-morado">G)</td>
-                    <td class="descripcion-pregunta">Masa total requerida de solución absorbente por unidad de volumen (al exceso seleccionado)</td>
-                    <td class="val-unidades-evaluacion">{kg_solucion_m3:.4f} kg/m³</td>
+                    <td class="txt-parametro">Masa total requerida de solución absorbente por unidad de volumen (al exceso seleccionado)</td>
+                    <td class="num-valor-unidad">{kg_solucion_m3:.4f} kg/m³</td>
                 </tr>
                 <tr>
-                    <td class="inciso-morado">H)</td>
-                    <td class="descripcion-pregunta">Moles de CO₂ transportados en la corriente de líquido alimentada por la parte superior L₂</td>
-                    <td class="val-unidades-evaluacion">{moles_CO2_L2:.4f} mol/m³</td>
+                    <td class="txt-parametro">Moles de CO₂ transportados en la corriente de líquido alimentada por la parte superior L₂</td>
+                    <td class="num-valor-unidad">{moles_CO2_L2:.4f} mol/m³</td>
                 </tr>
     ''', unsafe_allow_html=True)
 
     # Cierre de la estructura HTML
-    st.markdown("</table></div>", unsafe_allow_html=True)
+    st.markdown("</tbody></table></div>", unsafe_allow_html=True)
