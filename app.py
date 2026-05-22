@@ -62,7 +62,7 @@ st.warning(
 st.markdown("---")
 st.markdown(
     "<h4 style='color: #0A2540; text-align: center;'>"
-    "Diagrama "
+    "Esquema del Sistema "
     "</h4>",
     unsafe_allow_html=True
 )
@@ -81,14 +81,14 @@ st.markdown("---")
 # FORMULARIO DE ENTRADAS DE DISEÑO
 # ==============================================================================
 with st.form("simulador_form"):
-    st.markdown("<h3 style='color: #0A2540;'>Variables de Entrada del Proceso</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='color: #0A2540;'>Variables de entrada del proceso</h3>", unsafe_allow_html=True)
     
-    C_MEA = st.number_input("Concentración inicial de la solución de MEA (% en peso, ej. 30.0 = 30%)", min_value=0.0, max_value=100.0, value=30.0, step=1.0, format="%.4f")
+    C_MEA = st.number_input("Concentración inicial de la solución de MEA (% en peso)", min_value=0.0, max_value=100.0, value=30.0, step=1.0, format="%.4f")
     
     st.markdown("<h4 style='color: #0A2540;'>Composición del Gas de Entrada (Parte Inferior - Corriente $G_1$)</h4>", unsafe_allow_html=True)
-    y1_CO2_pct = st.number_input("Porcentaje volumétrico de $CO_2$ (% vol, ej. 15.0 = 15%)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
-    y1_O2_pct  = st.number_input("Porcentaje volumétrico de $O_2$ (% vol, ej. 6.0 = 6%)", min_value=0.0, max_value=100.0, value=6.0, format="%.4f")
-    y1_N2_pct  = st.number_input("Porcentaje volumétrico de $N_2$ (% vol, ej. 79.0 = 79%)", min_value=0.0, max_value=100.0, value=79.0, format="%.4f")
+    y1_CO2_pct = st.number_input("Porcentaje volumétrico de $CO_2$ (% vol)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
+    y1_O2_pct  = st.number_input("Porcentaje volumétrico de $O_2$ (% vol)", min_value=0.0, max_value=100.0, value=6.0, format="%.4f")
+    y1_N2_pct  = st.number_input("Porcentaje volumétrico de $N_2$ (% vol)", min_value=0.0, max_value=100.0, value=79.0, format="%.4f")
     
     st.markdown("<h4 style='color: #0A2540;'>Condiciones de Operación y Especificaciones de Salida</h4>", unsafe_allow_html=True)
     x2_input = st.number_input("Concentración de $CO_2$ en el líquido de entrada en la Parte Superior ($x_2$, mol CO₂/mol sol)", min_value=0.0, max_value=1.0, value=0.0580, format="%.4f")
