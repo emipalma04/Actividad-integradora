@@ -53,14 +53,20 @@ st.info(
 )
 
 st.warning(
-    "📌 **Nota de diseño:** Los valores numéricos precargados de forma predeterminada en el formulario "
+    "📌 **Configuración de referencia:** Los valores numéricos precargados de forma predeterminada en el formulario "
     "corresponden exactamente a las especificaciones y datos base establecidos en el ejercicio "
     "de la Unidad 3 – Participación 4."
 )
 
 # DIAGRAMA DE FLUJO EN INGLÉS (Requerido para soporte visual)
 st.markdown("---")
-st.markdown("<h4 style='color: #0A2540; text-align: center;'>Absorption of $CO_2$ in a packed absorber</h4>", unsafe_allow_html=True)
+st.markdown(
+    "<h4 style='color: #0A2540; text-align: center;'>"
+    "Absorption of $CO_2$ in a Packed Absorber / "
+    "Absorción de $CO_2$ en una Torre Empacada"
+    "</h4>",
+    unsafe_allow_html=True
+)
 st.write(
     "Como apoyo para la interpretación de los resultados y balances, el siguiente diagrama ilustra "
     "el flujo a contracorriente de la torre, donde el gas alimentado asciende desde la parte inferior "
