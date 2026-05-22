@@ -97,15 +97,17 @@ with st.form("simulador_form"):
     
     st.info(
     "📌 Nota: De acuerdo con los requerimientos fijos del modelo simplificado, las condiciones térmicas y de presión se establecen en 25 °C y 1.2 atm."
-)
+ )
 
-st.warning(
-    "⚠️ Aviso: Dependiendo de la configuración del sistema, los números decimales "
-    "pueden visualizarse con coma (,) o punto (.) como separador decimal. "
-    "Esto no afecta los cálculos realizados ni los resultados generados por el modelo."
-)
-    
-submit_button = st.form_submit_button(label="Correr simulación")
+    st.warning(
+        "⚠️ Aviso: Dependiendo de la configuración del sistema, los números decimales "
+        "pueden visualizarse con coma (,) o punto (.) como separador decimal. "
+        "Esto no afecta los cálculos realizados ni los resultados generados por el modelo."
+    )
+
+    submit_button = st.form_submit_button(
+        label="Correr simulación"
+    )
 
 # ==============================================================================
 # ALGORITMO MATEMÁTICO Y BALANCES DE MATERIA
