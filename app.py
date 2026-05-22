@@ -52,7 +52,7 @@ st.info(
 
 st.warning(
     "📌 **Nota de diseño:** Los valores numéricos precargados de forma predeterminada en el formulario "
-    "corresponden exactamente a las especificaciones y datos base del ejercicio clásico U3-P4."
+    "corresponden exactamente a las especificaciones y datos base del ejercicio pertenecient."
 )
 
 # DIAGRAMA DE FLUJO EN INGLÉS (Requerido para soporte visual)
@@ -65,7 +65,7 @@ st.write(
 )
 
 # Insertamos la imagen del diagrama de flujo como soporte conceptual
-st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/Diagrama%20Torre.png", caption="Figura 1: Absorption of CO2 in a packed absorber (Countercurrent flow).", use_container_width=True)
+st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/Diagrama.png", caption="Figura 1: Absorption of CO2 in a packed absorber (Countercurrent flow).", use_container_width=True)
 st.markdown("---")
 
 
