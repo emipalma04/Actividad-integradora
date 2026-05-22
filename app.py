@@ -243,17 +243,106 @@ if submit_button:
         )
         
     # ==========================================================================
-    # SECCIÓN DE REPORTES FINALES (COINCIDE EXACTAMENTE CON LOS ITEMS SOLICITADOS)
+    # TABLA RESUMEN DE RESPUESTAS FINALES DE EVALUACIÓN
     # ==========================================================================
-    st.markdown("---")
-    st.markdown("<h3 style='color: #0A2540; font-family: sans-serif;'><b>Resultados finales</b></h3>", unsafe_allow_html=True)
-    st.markdown("") 
-    
-    st.markdown(f'<div class="tarjeta-morada-individual"><b>A)</b> Relación líquido/gas mínima (Ls-min/Gs): {LsGs_min:.4f} mol/mol</div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="tarjeta-morada-individual"><b>B)</b> Relación molar del gas de salida en la parte superior de la torre (Y₂): {Y2:.4f} mol CO₂/mol inerte</div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="tarjeta-morada-individual"><b>C)</b> Relación molar del líquido de entrada en la parte superior de la torre (X₂): {X2:.4f} mol CO₂/mol sol</div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="tarjeta-morada-individual"><b>D)</b> Relación molar del gas de entrada en la parte inferior de la torre (Y₁): {Y1:.4f} mol CO₂/mol inerte</div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="tarjeta-morada-individual"><b>E)</b> Relación molar de equilibrio teórico en la parte inferior (X₁*): {X1_star:.4f} mol CO₂/mol sol</div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="tarjeta-morada-individual"><b>F)</b> Flujo molar de gas inerte real Gs por unidad de volumen: {Gs_real:.4f} mol/m³</div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="tarjeta-morada-individual"><b>G)</b> Masa total requerida de solución absorbente por unidad de volumen (al exceso seleccionado): {kg_solucion_m3:.4f} kg/m³</div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="tarjeta-morada-individual"><b>H)</b> Moles de CO₂ transportados en la corriente de líquido alimentada por la parte superior L₂: {moles_CO2_L2:.4f} mol/m³</div>', unsafe_allow_html=True)
+    st.markdown(
+        """
+        <style>
+            .tabla-evaluacion {
+                width: 100%;
+                border-collapse: collapse;
+                font-family: 'Segoe UI', sans-serif;
+                margin-top: 15px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .tabla-evaluacion th {
+                background-color: #7C3AED; /* Morado institucional elegante */
+                color: white;
+                padding: 12px 16px;
+                font-weight: 600;
+                text-align: left;
+                font-size: 14px;
+            }
+            .tabla-evaluacion td {
+                padding: 12px 16px;
+                border-bottom: 1px solid #E4E4E7;
+                background-color: #F9F5FF; /* Fondo morado sumamente tenue */
+                font-size: 14px;
+                vertical-align: middle;
+            }
+            .tabla-evaluacion tr:last-child td {
+                border-bottom: 2px solid #7C3AED;
+            }
+            .inciso-negrita {
+                font-weight: bold;
+                color: #6D28D9;
+            }
+            .val-evaluacion {
+                font-family: 'Courier New', monospace;
+                font-weight: bold;
+                color: #1F2937;
+                text-align: right;
+                white-space: nowrap;
+            }
+        </style>
+        
+        <table class="tabla-evaluacion">
+            <thead>
+                <tr>
+                    <th style="width: 10%;">Inciso</th>
+                    <th style="width: 65%;">Parámetro Solicitado en Evaluación</th>
+                    <th style="width: 25%; text-align: right;">Valor Calculado / Unidades</th>
+                </tr>
+            </thead>
+            <tbody>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Filas de datos de la tabla de vaciado
+    st.markdown(f'''
+        <tr>
+            <td class="inciso-negrita">A</td>
+            <td>Relación líquido/gas mínima (Ls-min/Gs)</td>
+            <td class="val-evaluacion">{LsGs_min:.4f} mol/mol</td>
+        </tr>
+        <tr>
+            <td class="inciso-negrita">B</td>
+            <td>Relación molar del gas de salida en la parte superior de la torre (Y₂)</td>
+            <td class="val-evaluacion">{Y2:.4f} mol CO₂/mol inerte</td>
+        </tr>
+        <tr>
+            <td class="inciso-negrita">C</td>
+            <td>Relación molar del líquido de entrada en la parte superior de la torre (X₂)</td>
+            <td class="val-evaluacion">{X2:.4f} mol CO₂/mol sol</td>
+        </tr>
+        <tr>
+            <td class="inciso-negrita">D</td>
+            <td>Relación molar del gas de entrada en la parte inferior de la torre (Y₁)</td>
+            <td class="val-evaluacion">{Y1:.4f} mol CO₂/mol inerte</td>
+        </tr>
+        <tr>
+            <td class="inciso-negrita">E</td>
+            <td>Relación molar de equilibrio teórico en la parte inferior (X₁*)</td>
+            <td class="val-evaluacion">{X1_star:.4f} mol CO₂/mol sol</td>
+        </tr>
+        <tr>
+            <td class="inciso-negrita">F</td>
+            <td>Flujo molar de gas inerte real Gs por unidad de volumen</td>
+            <td class="val-evaluacion">{Gs_real:.4f} mol/m³</td>
+        </tr>
+        <tr>
+            <td class="inciso-negrita">G</td>
+            <td>Masa total requerida de solución absorbente por unidad de volumen (al exceso)</td>
+            <td class="val-evaluacion">{kg_solucion_m3:.4f} kg/m³</td>
+        </tr>
+        <tr>
+            <td class="inciso-negrita">H</td>
+            <td>Moles de CO₂ transportados en la corriente de líquido alimentada por la parte superior L₂</td>
+            <td class="val-evaluacion">{moles_CO2_L2:.4f} mol/m³</td>
+        </tr>
+    ''', unsafe_allow_html=True)
+
+    st.markdown("</table>", unsafe_allow_html=True)
