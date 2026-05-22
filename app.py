@@ -96,11 +96,11 @@ with st.form("simulador_form"):
     y2_CO2_pct = st.number_input("Concentración residual de $CO_2$ deseada en el gas de salida por la Parte Superior (% vol)", min_value=0.0, max_value=100.0, value=2.0, format="%.4f")
     
     st.info(
-    "📌 Nota: De acuerdo con los requerimientos fijos del modelo simplificado, las condiciones térmicas y de presión se establecen en 25 °C y 1.2 atm."
+    "📌 **Nota:** De acuerdo con los requerimientos fijos del modelo simplificado, las condiciones térmicas y de presión se establecen en 25 °C y 1.2 atm."
  )
 
     st.warning(
-        "⚠️ Aviso: Dependiendo de la configuración del sistema, los números decimales "
+        "⚠️ **Aviso:** Dependiendo de la configuración regional del sistema, los números decimales "
         "pueden visualizarse con coma (,) o punto (.) como separador decimal. "
         "Esto no afecta los cálculos realizados ni los resultados generados por el modelo."
     )
