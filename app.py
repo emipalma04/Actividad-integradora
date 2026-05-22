@@ -269,7 +269,7 @@ if submit_button:
     st.markdown("<h3 style='color: #0A2540;'> </h3>", unsafe_allow_html=True)
     
     st.info(
-    "📌 Nota: Si desea modificar los parámetros o condiciones de entrada, "
+    "📌 **Nota:** Si desea modificar los parámetros o condiciones de entrada, "
     "desplácese hacia la parte superior del formulario y ajuste los valores según corresponda. "
     "Los resultados se actualizarán automáticamente con los nuevos datos ingresados."
 )
