@@ -245,11 +245,12 @@ if submit_button:
     # ==========================================================================
     # TABLA RESUMEN DE RESPUESTAS (DISEÑO TOTALMENTE PINTADO EN MORADO PASTEL)
     # ==========================================================================
+    st.markdown("<h3 style='color: #0A2540;'>Sección de resultados</h3>", unsafe_allow_html=True)
     
     st.markdown(
         f"""
         <div style="background-color: #F4EFFF; padding: 20px; border-radius: 8px; border-left: 5px solid #9061F9; min-height: 430px;">
-            <h3 style="color: #4C1D95; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Resultados del Balance de Materia</b></h3>
+            <h3 style="color: #4C1D95; margin-top: 0; margin-bottom: 18px; font-family: sans-serif;"><b>Resultados obtenidos</b></h3>
             <table class="tabla-resultados" style="width: 100%; border-collapse: collapse; background-color: transparent;">
                 <tr><td class="lbl">Relación líquido/gas mínima (Ls-min/Gs)</td><td class="val">{LsGs_min:.4f} mol/mol</td></tr>
                 <tr><td class="lbl">Relación molar del gas de salida en la parte superior de la torre (Y₂)</td><td class="val">{Y2:.4f} mol CO₂/mol inerte</td></tr>
