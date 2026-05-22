@@ -49,12 +49,13 @@ st.write(
 
 st.info(
     "💡 **Nota sobre los datos:** Todos los valores que requieran porcentaje (%) deben introducirse en una escala de 0 a 100. "
-    "Por ejemplo, si desea ingresar un treinta por ciento, introduzca **30.0** (no escriba 0.3)."
+    "Por ejemplo, si desea ingresar un 25%, introduzca **25.0** (no escriba 0.25)."
 )
 
 st.warning(
     "📌 **Nota de diseño:** Los valores numéricos precargados de forma predeterminada en el formulario "
-    "corresponden exactamente a las especificaciones y datos base del ejercicio pertenecient."
+    "corresponden exactamente a las especificaciones y datos base establecidos en el ejercicio "
+    "de la Unidad 3 – Participación 4."
 )
 
 # DIAGRAMA DE FLUJO EN INGLÉS (Requerido para soporte visual)
