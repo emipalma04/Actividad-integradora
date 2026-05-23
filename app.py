@@ -153,7 +153,7 @@ if submit_button:
     
     if abs(suma_actual - 100.0) > 0.0001:
         st.session_state.datos_gas_validos = False
-        st.error(f"🚫 **Simulación bloqueada:** No se puede ejecutar el modelo porque la mezcla actual suma **{suma_actual:.4f}%**. Primero debes ajustar los porcentajes al 100.0% y presionar 'Verificar composición'.")
+        st.error(f"❌ **Por favor, corrige los datos de composición:** La suma de la mezcla actual es de **{suma_actual:.4f}%**, por lo que supera el 100.0%. Los resultados mostrados en pantalla son incorrectos.")
     
     elif not st.session_state.datos_gas_validos:
         st.error("🚫 **Simulación bloqueada:** Primero debes validar la mezcla usando el botón 'Verificar composición' antes de correr el modelo matemático.")
