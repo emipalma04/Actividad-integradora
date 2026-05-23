@@ -69,7 +69,7 @@ st.write(
 )
 
 # Insertamos la imagen del diagrama de flujo como soporte conceptual
-st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/Diagrama.png", caption="Figura 1: Absorption of CO₂ in a Packed Absorber / Absorción de CO₂ en una Torre Empacada.", use_container_width=True)
+st.image("https://raw.githubusercontent.com/emipalma04/Actividad-integradora/main/Diagram.png", caption="Figura 1: Absorption of CO₂ in a Packed Absorber / Absorción de CO₂ en una Torre Empacada.", use_container_width=True)
 st.markdown("---")
 
 
