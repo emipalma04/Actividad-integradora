@@ -73,46 +73,53 @@ with st.form("simulador_form"):
    
     # 1. SECCIÓN DE COMPOSICIÓN DEL GAS (Fuera del formulario para actualización instantánea en tiempo real)
     st.write("#### :blue[Variables de entrada del proceso]")
+    
     C_MEA = st.number_input("Concentración inicial de la solución de MEA (% en peso)", min_value=0.0, max_value=100.0, value=30.0, step=1.0, format="%.4f")
     
     st.write("#### :blue[Composición del Gas de Entrada (Parte Inferior - Corriente G₁)]")
     
+    # Inputs numéricos
     y1_CO2_pct = st.number_input("Porcentaje volumétrico de CO₂ (% vol)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
     y1_O2_pct  = st.number_input("Porcentaje volumétrico de O₂ (% vol)", min_value=0.0, max_value=100.0, value=6.0, format="%.4f")
     y1_N2_pct  = st.number_input("Porcentaje volumétrico de N₂ (% vol)", min_value=0.0, max_value=100.0, value=79.0, format="%.4f")
 
-    # Calculamos la suma en tiempo real ante cualquier cambio numérico
-    suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
-    datos_gas_validos = False
+    # Inicializamos las variables en el session_state para que no se borren al hacer clic
+    if "datos_gas_validos" not in st.session_state:
+        st.session_state.datos_gas_validos = False
+    if "mensaje_balance" not in st.session_state:
+        st.session_state.mensaje_balance = None
+    if "tipo_mensaje" not in st.session_state: # 'success', 'error' o 'warning'
+        st.session_state.tipo_mensaje = None
 
-    # Botón normal de control de flujo
-    if st.button("Verificar composiciones"):
+    # Botón intermedio para accionar la verificación
+    if st.button("Verificar Balance"):
+        suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
+        
         if abs(suma_total_gas - 100.0) <= 0.0001:
             st.session_state.mensaje_balance = f"✅ Mezcla balanceada correctamente: Suma total = {suma_total_gas:.4f}%"
             st.session_state.tipo_mensaje = "success"
             st.session_state.datos_gas_validos = True
         elif suma_total_gas > 100.0:
-            exceso = suma_total_gas - 100.0
-            st.session_state.mensaje_balance = f"❌ **¡Error en la composición!** La suma total es mayor a 100.00% (Actual: {suma_total_gas:.4f}%). Se excede por {exceso:.4f}%. Por favor, reajuste los valores."
+            st.session_state.mensaje_balance = f"❌ **¡Error en la composición!** La suma total es mayor a 100.00% (Actual: {suma_total_gas:.4f}%). Por favor, reajuste los valores."
             st.session_state.tipo_mensaje = "error"
             st.session_state.datos_gas_validos = False
         else:
             faltante = 100.0 - suma_total_gas
-            st.session_state.mensaje_balance = f"⚠️ **Composición incompleta:** La suma total es de **{suma_total_gas:.4f}%**. Falta un **{faltante:.4f}%** para alcanzar el 100.00% de la mezcla."
+            st.session_state.mensaje_balance = f"⚠️ **Composición incompleta:** La suma total es de **{suma_total_gas:.4f}%**. Falta un **{faltante:.4f}%** para alcanzar el 100% de la mezcla."
             st.session_state.tipo_mensaje = "warning"
             st.session_state.datos_gas_validos = False
 
-    # Despliegue de alertas dinámicas
-    if "mensaje_balance" in st.session_state and st.session_state.mensaje_balance:
+    # Renderizar el mensaje guardado en el estado de la sesión si existe
+    if st.session_state.mensaje_balance:
         if st.session_state.tipo_mensaje == "success":
             st.success(st.session_state.mensaje_balance)
-            datos_gas_validos = True
         elif st.session_state.tipo_mensaje == "error":
             st.error(st.session_state.mensaje_balance)
         elif st.session_state.tipo_mensaje == "warning":
             st.warning(st.session_state.mensaje_balance)
 
-    st.markdown("---")
+    # El botón final de calcular responderá al estado de la verificación
+    submit_button = st.button("Calcular Balance de Materia", disabled=not st.session_state.datos_gas_validos)
 
     # 2. FORMULARIO PRINCIPAL DE SIMULACIÓN (Protegido por la validación anterior)
     with st.form("simulador_form"):
