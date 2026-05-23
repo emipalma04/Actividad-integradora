@@ -77,9 +77,9 @@ with st.form("simulador_form"):
 st.write("#### :blue[Composición del Gas de Entrada (Parte Inferior - Corriente G₁)]")
     
     # Inputs numéricos normales para los tres componentes
-    y1_CO2_pct = st.number_input("Porcentaje volumétrico de CO₂ (% vol)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
-    y1_O2_pct  = st.number_input("Porcentaje volumétrico de O₂ (% vol)", min_value=0.0, max_value=100.0, value=6.0, format="%.4f")
-    y1_N2_pct  = st.number_input("Porcentaje volumétrico de N₂ (% vol)", min_value=0.0, max_value=100.0, value=79.0, format="%.4f")
+y1_CO2_pct = st.number_input("Porcentaje volumétrico de CO₂ (% vol)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
+y1_O2_pct  = st.number_input("Porcentaje volumétrico de O₂ (% vol)", min_value=0.0, max_value=100.0, value=6.0, format="%.4f")
+y1_N2_pct  = st.number_input("Porcentaje volumétrico de N₂ (% vol)", min_value=0.0, max_value=100.0, value=79.0, format="%.4f")
 
     # 1. Calculamos la suma total ingresada
     suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
