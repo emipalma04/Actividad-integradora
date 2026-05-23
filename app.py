@@ -156,7 +156,7 @@ if submit_button:
         st.error(f"❌ **Por favor, corrige los datos de composición:** La suma de la mezcla actual es de **{suma_actual:.4f}%**, por lo que supera el 100.00%. Los resultados mostrados en pantalla son incorrectos.")
     
     elif not st.session_state.datos_gas_validos:
-        st.error("🚫 **Simulación bloqueada:** Primero debes validar la mezcla usando el botón 'Verificar composición' antes de correr el modelo matemático.")
+        st.error("⚠️ **Validación requerida:** Por favor, presiona primero el botón 'Verificar composición' para validar la mezcla de gas. Esto es indispensable para asegurar la consistencia del balance de masa y evitar errores matemáticos o colapsos al momento de correr el modelo de la torre.")
     
     else:
         # AQUÍ VA TODO TU CÓDIGO DE CÁLCULO Y GRÁFICAS
