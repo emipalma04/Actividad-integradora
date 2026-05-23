@@ -182,9 +182,30 @@ if submit_button:
     x_table = np.array([0.058, 0.060, 0.062, 0.064, 0.066, 0.068, 0.070])
     P_table = np.array([5.6, 12.8, 29.0, 56.0, 98.7, 155.0, 232.0])
 
-    # Conversión de fracciones a relaciones molares (X, Y)
-    Y1 = y1_CO2 / (1.0 - y1_CO2)
-    Y2 = y2_CO2 / (1.0 - y2_CO2)
+    # =====================================================================
+    # 1. CONVERSIÓN Y CORRECCIÓN DE UNIDADES (Porcentaje a Fracción Molar)
+    # =====================================================================
+    # Pasamos los valores de la interfaz (ej: 15.0% y 2.0%) a fracciones (0.15 y 0.02)
+    y1_CO2 = y1_CO2_pct / 100.0
+    y2_CO2 = y2_CO2_pct / 100.0
+
+    # =====================================================================
+    # 2. FILTRO DE SEGURIDAD (Evita divisiones entre cero o valores ilógicos)
+    # =====================================================================
+    if y1_CO2 >= 1.0 or y2_CO2 >= 1.0:
+        st.error("❌ **Error crítico en las concentraciones:** Las fracciones molares de CO₂ no pueden ser mayores o iguales al 100% (1.0). Por favor, revisa los datos de entrada.")
+        st.stop()
+
+    if y2_CO2 >= y1_CO2:
+        st.error("❌ **Error de operación:** La concentración deseada de CO₂ a la salida ($y_2$) no puede ser mayor o igual que la concentración de entrada ($y_1$). La torre debe absorber CO₂, no generarlo.")
+        st.stop()
+
+    # =====================================================================
+    # 3. CONVERSIÓN SEGURA DE FRACCIONES A RELACIONES MOLARES (X, Y)
+    # =====================================================================
+    # Ahora que los números están entre 0 y 1, las ecuaciones funcionan a la perfección
+    Y1 = y1_CO2 / (1.0 - y1_CO2)  
+    Y2 = y2_CO2 / (1.0 - y2_CO2)  
     X2 = x2_input
 
     PT_mmHg = 1.2 * 760.0025
