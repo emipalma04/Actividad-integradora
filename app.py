@@ -96,12 +96,12 @@ with st.form("simulador_form"):
         suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
         
         if abs(suma_total_gas - 100.0) <= 0.0001:
-            st.session_state.mensaje_balance = f"✅ Mezcla balanceada correctamente: Suma total = {suma_total_gas:.4f}%"
+            st.session_state.mensaje_balance = f"✅ **Mezcla balanceada correctamente:** La suma total es de **{suma_total_gas:.4f}%**. Todo listo para simular."
             st.session_state.tipo_mensaje = "success"
             st.session_state.datos_gas_validos = True
         elif suma_total_gas > 100.0:
-            excaso = suma_total_gas - 100.0
-            st.session_state.mensaje_balance = f"❌ **¡Error en la composición!** La suma total es mayor a 100.00% (Actual: {suma_total_gas:.4f}%). Por favor, reajuste los valores."
+            exceso = suma_total_gas - 100.0
+            st.session_state.mensaje_balance = f"❌ **¡Error en la composición!** La suma total es de **{suma_total_gas:.4f}%**. Se excede por **{exceso:.4f}%** del límite permitido."
             st.session_state.tipo_mensaje = "error"
             st.session_state.datos_gas_validos = False
         else:
