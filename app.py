@@ -74,7 +74,7 @@ with st.form("simulador_form"):
     
     C_MEA = st.number_input("Concentración inicial de la solución de MEA (% en peso)", min_value=0.0, max_value=100.0, value=30.0, step=1.0, format="%.4f")
     
-st.write("#### :blue[Composición del Gas de Entrada (Parte Inferior - Corriente G₁)]")
+    st.write("#### :blue[Composición del Gas de Entrada (Parte Inferior - Corriente G₁)]")
     
     # Inputs numéricos normales para los tres componentes
     y1_CO2_pct = st.number_input("Porcentaje volumétrico de CO₂ (% vol)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
