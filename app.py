@@ -31,7 +31,7 @@ st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bott
 # Título del Proyecto Integrador y Datos del Estudiante (Conforme a la Portada Oficial)
 
 st.markdown("""
-    <div style='background-color: #F0F4F8; padding: 20px 30px; border-radius: 8px; border: 1px solid #D9E2EC; text-align: center; margin-top: 15px; margin-bottom: 20px;'>
+    <div style='background-color: #F3E8FF; padding: 20px 30px; border-radius: 8px; border: 1px solid #D9E2EC; text-align: center; margin-top: 15px; margin-bottom: 20px;'>
         <h2 style='color: #0A2540; font-family: sans-serif; font-size: 24px; margin: 0; line-height: 1.3;'>
             <b>MODELADO NUMÉRICO DEL BALANCE DE MATERIA EN LA ABSORCIÓN QUÍMICA DE CO₂ MEDIANTE SOLUCIONES DE MONOETANOLAMINA (MEA) EN TORRES EMPACADAS (PACKED TOWERS)</b>
         </h2>
@@ -144,7 +144,24 @@ with st.form("simulador_form"):
     submit_button = st.form_submit_button(
         label="Correr simulación"
     )
-
+    # --- CONTROL DEL FLUJO AFUERA O ADENTRO DEL FORMULARIO ---
+    
+    if submit_button:
+        
+    # Doble verificación en tiempo real por si cambiaron los inputs sin volver a verificar
+    suma_actual = y1_CO2_pct + y1_O2_pct + y1_N2_pct
+    
+    if abs(suma_actual - 100.0) > 0.0001:
+        st.session_state.datos_gas_validos = False
+        st.error(f"🚫 **Simulación bloqueada:** No se puede ejecutar el modelo porque la mezcla actual suma **{suma_actual:.4f}%**. Primero debes ajustar los porcentajes al 100.0% y presionar 'Verificar composición'.")
+    
+    elif not st.session_state.datos_gas_validos:
+        st.error("🚫 **Simulación bloqueada:** Primero debes validar la mezcla usando el botón 'Verificar composición' antes de correr el modelo matemático.")
+    
+    else:
+        # AQUÍ VA TODO TU CÓDIGO DE CÁLCULO Y GRÁFICAS
+        st.success("🚀 **Simulación ejecutada con éxito:** Procesando balances de materia y líneas de operación...")
+        # Llama aquí a tus funciones de simulación: ejecutar_modelo(C_MEA, y1_CO2_pct, ...)
 # ==============================================================================
 # ALGORITMO MATEMÁTICO Y BALANCES DE MATERIA
 # ==============================================================================
