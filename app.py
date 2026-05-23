@@ -99,6 +99,8 @@ with st.form("simulador_form"):
     # CORRECCIÓN CLAVE: Ambos deben ser botones nativos del formulario para procesar los datos
     btn_verificar = st.form_submit_button("Verificar composición")
 
+    st.caption("⚠️ **Nota técnica:** Ninguno de los componentes individuales puede registrar un valor de **0.0000%** o **100.00%**. El modelo matemático requiere la presencia de gases inertes ($N_2$ y $O_2$) para establecer las relaciones molares de la mezcla sin generar indeterminaciones o divisiones entre cero.")
+
     if btn_verificar:
         suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
         
