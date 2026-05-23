@@ -117,7 +117,7 @@ with st.form("simulador_form"):
             st.warning(st.session_state.mensaje_balance)
 
     # El botón final de calcular responderá al estado de la verificación
-    submit_button = st.button("Verificar balance", disabled=not st.session_state.datos_gas_validos)
+    submit_button = st.form_submit_button("Verificar composición", disabled=not st.session_state.datos_gas_validos)
     
     st.write("#### :blue[Condiciones de operación y especificaciones de salida]")
     x2_input = st.number_input("Concentración de $CO_2$ en el líquido de entrada en la Parte Superior ($x_2$, mol CO₂/mol sol)", min_value=0.0, max_value=1.0, value=0.0580, format="%.4f")
