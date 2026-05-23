@@ -315,7 +315,7 @@ if submit_button:
                     <tr><td class="lbl">Relación molar en la parte superior (Y₂)</td><td class="val">{Y2:.4f}</td></tr>
                     <tr><td class="lbl">Relación Líquido/Gas mínima (Ls/Gs)<sub>min</sub></td><td class="val">{LsGs_min:.4f}</td></tr>
                     <tr><td class="lbl">Relación Líquido/Gas operacional (Ls/Gs)<sub>real</sub></td><td class="val">{LsGs_real:.4f}</td></tr>
-                    <tr><td class="lbl">Gas inerte estándar Gs a 1.0 atm (mol/m³)</td><td class="val">{Gs_1atm:.4f}</td></tr>
+                    <tr><td class="lbl">Moles totales reales de la mezcla n<sub>T</sub> a 1.2 atm (mol/m³)</td><td class="val">{n_total_m3_real:.4f}</td></tr>
                     <tr><td class="lbl">Gas inerte de operación Gs a 1.2 atm (mol/m³)</td><td class="val">{Gs_real:.4f}</td></tr>
                     <tr><td class="lbl">Flujo molar del solvente inerte Ls (mol)</td><td class="val">{Ls_real:.4f}</td></tr>
                     <tr><td class="lbl">Masa total de la solución absorbente (kg)</td><td class="val">{kg_solucion_m3:.4f}</td></tr>
