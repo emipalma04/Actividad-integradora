@@ -90,7 +90,7 @@ with st.form("simulador_form"):
         st.session_state.tipo_mensaje = None
 
     # CORRECCIÓN CLAVE: Ambos deben ser botones nativos del formulario para procesar los datos
-    btn_verificar = st.form_submit_button("Verificar Balance")
+    btn_verificar = st.form_submit_button("Verificar composición")
 
     if btn_verificar:
         suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
