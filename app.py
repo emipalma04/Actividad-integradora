@@ -89,9 +89,6 @@ with st.form("simulador_form"):
     if "tipo_mensaje" not in st.session_state: 
         st.session_state.tipo_mensaje = None
 
-    # CORRECCIÓN CLAVE: Ambos deben ser botones nativos del formulario para procesar los datos
-    btn_verificar = st.form_submit_button("Verificar Balance")
-
     if btn_verificar:
         suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
         
@@ -120,7 +117,7 @@ with st.form("simulador_form"):
             st.warning(st.session_state.mensaje_balance)
 
     # Botón maestro de cálculo final (Deshabilitado hasta que la verificación sea exitosa)
-    submit_button = st.form_submit_button("Calcular Balance de Materia", disabled=not st.session_state.datos_gas_validos)
+    submit_button = st.form_submit_button("Verificar composiciones", disabled=not st.session_state.datos_gas_validos)
     
     st.write("#### :blue[Condiciones de operación y especificaciones de salida]")
     x2_input = st.number_input("Concentración de $CO_2$ en el líquido de entrada en la Parte Superior ($x_2$, mol CO₂/mol sol)", min_value=0.0, max_value=1.0, value=0.0580, format="%.4f")
