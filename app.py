@@ -94,7 +94,7 @@ with st.form("simulador_form"):
         datos_gas_validos = True
     elif suma_total_gas > 100.0:
         exceso = suma_total_gas - 100.0
-        st.error(f"❌ **¡Error en la composición!** La suma total es de **{suma_total_gas:.4f}%**. Se está excediendo del 100% por **{exceso:.4f}%**. Por favor, reajusta los valores.")
+        st.error(f"❌ **¡Error en la composición!** La suma total es mayor a 100.00%. Por favor, reajuste los valores.")
         datos_gas_validos = False
     else:
         faltante = 100.0 - suma_total_gas
