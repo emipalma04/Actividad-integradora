@@ -30,7 +30,13 @@ st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bott
 
 # Título del Proyecto Integrador y Datos del Estudiante (Conforme a la Portada Oficial)
 
-st.markdown("<div style='text-align: center;'><h2 style='color: #0A2540; font-family: sans-serif; font-size: 28px; margin-bottom: 15px;'><b>MODELADO NUMÉRICO DEL BALANCE DE MATERIA EN LA ABSORCIÓN QUÍMICA DE CO₂ MEDIANTE SOLUCIONES DE MONOETANOLAMINA (MEA) EN TORRES EMPACADAS (PACKED TOWERS)</b></h2></div>", unsafe_allow_html=True)
+st.markdown("""
+    <div style='background-color: #F0F4F8; padding: 20px 30px; border-radius: 8px; border: 1px solid #D9E2EC; text-align: center; margin-top: 15px; margin-bottom: 20px;'>
+        <h2 style='color: #0A2540; font-family: sans-serif; font-size: 24px; margin: 0; line-height: 1.3;'>
+            <b>MODELADO NUMÉRICO DEL BALANCE DE MATERIA EN LA ABSORCIÓN QUÍMICA DE CO₂ MEDIANTE SOLUCIONES DE MONOETANOLAMINA (MEA) EN TORRES EMPACADAS (PACKED TOWERS)</b>
+        </h2>
+    </div>
+""", unsafe_allow_html=True)
 st.markdown("---")
 
 # ==============================================================================
