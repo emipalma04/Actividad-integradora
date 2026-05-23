@@ -30,12 +30,7 @@ st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bott
 
 # Título del Proyecto Integrador y Datos del Estudiante (Conforme a la Portada Oficial)
 
-st.markdown("<h2 style='color: #0A2540; font-family: sans-serif; font-size: 24px; margin-bottom: 15px;'><b> ACTIVIDAD INTEGRADORA</b></h2>", unsafe_allow_html=True)
-st.markdown("**PROYECTO:** Automatización y análisis del proceso de absorción de CO₂ usando soluciones acuosas de monoetanolamina (MEA)")
-st.markdown("**Materia:** Operaciones Unitarias II")
-st.markdown("**Docente:** Dr. Ildebrando Pérez Reyes")
-st.markdown("**Desarrollado por:** Gerardo Emiliano Palma Chávez")
-st.markdown("---")
+st.markdown("<h2 style='color: #0A2540; font-family: sans-serif; font-size: 24px; margin-bottom: 15px;'><b> AUTOMATIZACIÓN Y ANÁLISIS DEL PROCESO DE ABSORCIÓN DE CO₂ USANDO SOLUCIONES ACUOSAS DE MONOETANOLAMINA (MEA)</b></h2>", unsafe_allow_html=True)
 
 # ==============================================================================
 # GUÍA DE USO Y DIAGRAMA DE FLUJO DE APOYO
@@ -50,12 +45,6 @@ st.write(
 st.info(
     "💡 **Nota sobre los datos:** Todos los valores que requieran porcentaje (%) deben introducirse en una escala de 0 a 100. "
     "Por ejemplo, si desea ingresar un 25%, introduzca **25.0** (no escriba 0.25)."
-)
-
-st.warning(
-    "📌 **Configuración de referencia:** Los valores numéricos precargados de forma predeterminada en el formulario "
-    "corresponden exactamente a las especificaciones y datos base establecidos en el ejercicio "
-    "de la Unidad 3 – Participación 4."
 )
 
 # DIAGRAMA DE FLUJO EN INGLÉS (Requerido para soporte visual)
@@ -85,10 +74,32 @@ with st.form("simulador_form"):
     
     C_MEA = st.number_input("Concentración inicial de la solución de MEA (% en peso)", min_value=0.0, max_value=100.0, value=30.0, step=1.0, format="%.4f")
     
-    st.write("#### :blue[Composición del Gas de Entrada (Parte Inferior - Corriente $G_1$)]")
-    y1_CO2_pct = st.number_input("Porcentaje volumétrico de $CO_2$ (% vol)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
-    y1_O2_pct  = st.number_input("Porcentaje volumétrico de $O_2$ (% vol)", min_value=0.0, max_value=100.0, value=6.0, format="%.4f")
-    y1_N2_pct  = st.number_input("Porcentaje volumétrico de $N_2$ (% vol)", min_value=0.0, max_value=100.0, value=79.0, format="%.4f")
+st.write("#### :blue[Composición del Gas de Entrada (Parte Inferior - Corriente G₁)]")
+    
+    # Inputs numéricos normales para los tres componentes
+    y1_CO2_pct = st.number_input("Porcentaje volumétrico de CO₂ (% vol)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
+    y1_O2_pct  = st.number_input("Porcentaje volumétrico de O₂ (% vol)", min_value=0.0, max_value=100.0, value=6.0, format="%.4f")
+    y1_N2_pct  = st.number_input("Porcentaje volumétrico de N₂ (% vol)", min_value=0.0, max_value=100.0, value=79.0, format="%.4f")
+
+    # 1. Calculamos la suma total ingresada
+    suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
+
+    # 2. Variable bandera para controlar si los datos son válidos o no
+    datos_gas_validos = False
+
+    # 3. Lógica de validación con avisos dinámicos
+    # Usamos un pequeño margen de tolerancia (0.0001) por cuestiones de decimales flotantes
+    if abs(suma_total_gas - 100.0) <= 0.0001:
+        st.success(f"✅ Mezcla balanceada correctamente: Suma total = {suma_total_gas:.4f}%")
+        datos_gas_validos = True
+    elif suma_total_gas > 100.0:
+        exceso = suma_total_gas - 100.0
+        st.error(f"❌ **¡Error en la composición!** La suma total es de **{suma_total_gas:.4f}%**. Se está excediendo del 100% por **{exceso:.4f}%**. Por favor, reajusta los valores.")
+        datos_gas_validos = False
+    else:
+        faltante = 100.0 - suma_total_gas
+        st.warning(f"⚠️ **Composición incompleta:** La suma total es de **{suma_total_gas:.4f}%**. Falta un **{faltante:.4f}%** para alcanzar el 100% de la mezcla.")
+        datos_gas_validos = False
     
     st.write("#### :blue[Condiciones de operación y especificaciones de salida]")
     x2_input = st.number_input("Concentración de $CO_2$ en el líquido de entrada en la Parte Superior ($x_2$, mol CO₂/mol sol)", min_value=0.0, max_value=1.0, value=0.0580, format="%.4f")
