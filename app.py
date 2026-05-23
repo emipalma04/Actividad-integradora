@@ -76,30 +76,48 @@ with st.form("simulador_form"):
     
     st.write("#### :blue[Composición del Gas de Entrada (Parte Inferior - Corriente G₁)]")
     
-    # Inputs numéricos normales para los tres componentes
+    # Inputs numéricos
     y1_CO2_pct = st.number_input("Porcentaje volumétrico de CO₂ (% vol)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
     y1_O2_pct  = st.number_input("Porcentaje volumétrico de O₂ (% vol)", min_value=0.0, max_value=100.0, value=6.0, format="%.4f")
     y1_N2_pct  = st.number_input("Porcentaje volumétrico de N₂ (% vol)", min_value=0.0, max_value=100.0, value=79.0, format="%.4f")
 
-    # 1. Calculamos la suma total ingresada
-    suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
+    # Inicializamos las variables en el session_state para que no se borren al hacer clic
+    if "datos_gas_validos" not in st.session_state:
+        st.session_state.datos_gas_validos = False
+    if "mensaje_balance" not in st.session_state:
+        st.session_state.mensaje_balance = None
+    if "tipo_mensaje" not in st.session_state: # 'success', 'error' o 'warning'
+        st.session_state.tipo_mensaje = None
 
-    # 2. Variable bandera para controlar si los datos son válidos o no
-    datos_gas_validos = False
+    # Botón intermedio para accionar la verificación
+    if st.button("Verificar Balance"):
+        suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
+        
+        if abs(suma_total_gas - 100.0) <= 0.0001:
+            st.session_state.mensaje_balance = f"✅ Mezcla balanceada correctamente: Suma total = {suma_total_gas:.4f}%"
+            st.session_state.tipo_mensaje = "success"
+            st.session_state.datos_gas_validos = True
+        elif suma_total_gas > 100.0:
+            st.session_state.mensaje_balance = f"❌ **¡Error en la composición!** La suma total es mayor a 100.00% (Actual: {suma_total_gas:.4f}%). Por favor, reajuste los valores."
+            st.session_state.tipo_mensaje = "error"
+            st.session_state.datos_gas_validos = False
+        else:
+            faltante = 100.0 - suma_total_gas
+            st.session_state.mensaje_balance = f"⚠️ **Composición incompleta:** La suma total es de **{suma_total_gas:.4f}%**. Falta un **{faltante:.4f}%** para alcanzar el 100.00% de la mezcla."
+            st.session_state.tipo_mensaje = "warning"
+            st.session_state.datos_gas_validos = False
 
-    # 3. Lógica de validación con avisos dinámicos
-    # Usamos un pequeño margen de tolerancia (0.0001) por cuestiones de decimales flotantes
-    if abs(suma_total_gas - 100.0) <= 0.0001:
-        st.success(f"✅ Mezcla balanceada correctamente: Suma total = {suma_total_gas:.4f}%")
-        datos_gas_validos = True
-    elif suma_total_gas > 100.0:
-        exceso = suma_total_gas - 100.0
-        st.error(f"❌ **¡Error en la composición!** La suma total es de **{suma_total_gas:.4f}%**. Se está excediendo del 100% por **{exceso:.4f}%**. Por favor, reajusta los valores.")
-        datos_gas_validos = False
-    else:
-        faltante = 100.0 - suma_total_gas
-        st.warning(f"⚠️ **Composición incompleta:** La suma total es de **{suma_total_gas:.4f}%**. Falta un **{faltante:.4f}%** para alcanzar el 100% de la mezcla.")
-        datos_gas_validos = False
+    # Renderizar el mensaje guardado en el estado de la sesión si existe
+    if st.session_state.mensaje_balance:
+        if st.session_state.tipo_mensaje == "success":
+            st.success(st.session_state.mensaje_balance)
+        elif st.session_state.tipo_mensaje == "error":
+            st.error(st.session_state.mensaje_balance)
+        elif st.session_state.tipo_mensaje == "warning":
+            st.warning(st.session_state.mensaje_balance)
+
+    # El botón final de calcular responderá al estado de la verificación
+    submit_button = st.button("Verificar balance", disabled=not st.session_state.datos_gas_validos)
     
     st.write("#### :blue[Condiciones de operación y especificaciones de salida]")
     x2_input = st.number_input("Concentración de $CO_2$ en el líquido de entrada en la Parte Superior ($x_2$, mol CO₂/mol sol)", min_value=0.0, max_value=1.0, value=0.0580, format="%.4f")
