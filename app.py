@@ -103,17 +103,17 @@ with st.form("simulador_form"):
         suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
         
         if abs(suma_total_gas - 100.0) <= 0.0001:
-            st.session_state.mensaje_balance = f"✅ **Mezcla balanceada correctamente:** La suma total es de **{suma_total_gas:.4f}%**. Todo listo para simular."
+            st.session_state.mensaje_balance = f"✅ **Mezcla balanceada correctamente:** La suma total es de **{suma_total_gas:.2f}%**. Todo listo para simular."
             st.session_state.tipo_mensaje = "success"
             st.session_state.datos_gas_validos = True
         elif suma_total_gas > 100.0:
             exceso = suma_total_gas - 100.0
-            st.session_state.mensaje_balance = f"❌ **¡Error en la composición!** La suma total es de **{suma_total_gas:.4f}%**. Se excede por **{exceso:.4f}%** del límite permitido."
+            st.session_state.mensaje_balance = f"❌ **¡Error en la composición!** La suma total es de **{suma_total_gas:.2f}%**. Se excede por **{exceso:.2f}%** del límite permitido."
             st.session_state.tipo_mensaje = "error"
             st.session_state.datos_gas_validos = False
         else:
             faltante = 100.0 - suma_total_gas
-            st.session_state.mensaje_balance = f"⚠️ **Composición incompleta:** La suma total es de **{suma_total_gas:.4f}%**. Falta un **{faltante:.4f}%** para alcanzar el 100.00% de la mezcla."
+            st.session_state.mensaje_balance = f"⚠️ **Composición incompleta:** La suma total es de **{suma_total_gas:.2f}%**. Falta un **{faltante:.2f}%** para alcanzar el 100.00% de la mezcla."
             st.session_state.tipo_mensaje = "warning"
             st.session_state.datos_gas_validos = False
 
@@ -153,7 +153,7 @@ if submit_button:
     
     if abs(suma_actual - 100.0) > 0.0001:
         st.session_state.datos_gas_validos = False
-        st.error(f"❌ **Por favor, corrige los datos de composición:** La suma de la mezcla actual es de **{suma_actual:.4f}%**, por lo que supera el 100.0%. Los resultados mostrados en pantalla son incorrectos.")
+        st.error(f"❌ **Por favor, corrige los datos de composición:** La suma de la mezcla actual es de **{suma_actual:.2f}%**, por lo que supera el 100.00%. Los resultados mostrados en pantalla son incorrectos.")
     
     elif not st.session_state.datos_gas_validos:
         st.error("🚫 **Simulación bloqueada:** Primero debes validar la mezcla usando el botón 'Verificar composición' antes de correr el modelo matemático.")
