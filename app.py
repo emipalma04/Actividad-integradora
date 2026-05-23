@@ -76,29 +76,25 @@ with st.form("simulador_form"):
     
     st.write("#### :blue[Composición del Gas de Entrada (Parte Inferior - Corriente G₁)]")
     
-    # Inputs numéricos normales para los tres componentes
-    y1_CO2_pct = st.number_input("Porcentaje volumétrico de CO₂ (% vol)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
-    y1_O2_pct  = st.number_input("Porcentaje volumétrico de O₂ (% vol)", min_value=0.0, max_value=100.0, value=6.0, format="%.4f")
-    y1_N2_pct  = st.number_input("Porcentaje volumétrico de N₂ (% vol)", min_value=0.0, max_value=100.0, value=79.0, format="%.4f")
+    # Al quitar el entorno de st.form, estas variables actualizan el script en tiempo real
+    y1_CO2_pct = st.number_input("Porcentaje volumétrico de CO₂ (% vol)", min_value=0.0, max_value=100.0, value=10.0000, step=1.0, format="%.4f")
+    y1_O2_pct  = st.number_input("Porcentaje volumétrico de O₂ (% vol)", min_value=0.0, max_value=100.0, value=40.0000, step=1.0, format="%.4f")
+    y1_N2_pct  = st.number_input("Porcentaje volumétrico de N₂ (% vol)", min_value=0.0, max_value=100.0, value=60.0000, step=1.0, format="%.4f")
 
-    # 1. Calculamos la suma total ingresada
+    # La suma se recalcula automáticamente ante cualquier microcambio
     suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
 
-    # 2. Variable bandera para controlar si los datos son válidos o no
-    datos_gas_validos = False
-
-    # 3. Lógica de validación con avisos dinámicos
-    # Usamos un pequeño margen de tolerancia (0.0001) por cuestiones de decimales flotantes
+    # Validación instantánea con mensajes dinámicos
     if abs(suma_total_gas - 100.0) <= 0.0001:
         st.success(f"✅ Mezcla balanceada correctamente: Suma total = {suma_total_gas:.4f}%")
         datos_gas_validos = True
     elif suma_total_gas > 100.0:
         exceso = suma_total_gas - 100.0
-        st.error(f"❌ **¡Error en la composición!** La suma total es mayor a 100.00%. Por favor, reajuste los valores.")
+        st.error(f"❌ ¡Error en la composición! La suma total es mayor a 100.00% (Actual: {suma_total_gas:.4f}%). Se excede por {exceso:.4f}%. Por favor, reajusta los valores.")
         datos_gas_validos = False
     else:
         faltante = 100.0 - suma_total_gas
-        st.warning(f"⚠️ **Composición incompleta:** La suma total es de **{suma_total_gas:.4f}%**. Falta un **{faltante:.4f}%** para alcanzar el 100% de la mezcla.")
+        st.warning(f"⚠️ Composición incompleta: La suma total es menor a 100.00% (Actual: {suma_total_gas:.4f}%). Falta un {faltante:.4f}% para alcanzar el total.")
         datos_gas_validos = False
     
     st.write("#### :blue[Condiciones de operación y especificaciones de salida]")
