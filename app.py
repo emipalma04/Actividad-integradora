@@ -81,7 +81,7 @@ with st.form("simulador_form"):
     
     C_MEA = st.number_input("Concentración inicial de la solución de MEA (% en peso)", min_value=0.0, max_value=100.0, value=30.0, step=1.0, format="%.4f")
     
-    st.write("#### :blue[Composición del Gas de Entrada (Parte Inferior - Corriente G₁)]")
+    st.write("#### :blue[Composición del gas de entrada (Parte inferior - Corriente G₁)]")
     
     # Inputs numéricos (Se quedan igual)
     y1_CO2_pct = st.number_input("Porcentaje volumétrico de CO₂ (% vol)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
@@ -127,9 +127,9 @@ with st.form("simulador_form"):
             st.warning(st.session_state.mensaje_balance)
     
     st.write("#### :blue[Condiciones de operación y especificaciones de salida]")
-    x2_input = st.number_input("Concentración de $CO_2$ en el líquido de entrada en la Parte Superior ($x_2$, mol CO₂/mol sol)", min_value=0.0, max_value=1.0, value=0.0580, format="%.4f")
+    x2_input = st.number_input("Concentración de $CO_2$ en el líquido de entrada en la parte superior ($x_2$, mol CO₂/mol sol)", min_value=0.0, max_value=1.0, value=0.0580, format="%.4f")
     factor_min = st.number_input("Multiplicador de exceso para la relación real (Factor respecto a $L_{s-min}/G_s$)", min_value=1.0, max_value=5.0, value=1.2000, step=0.1, format="%.4f")
-    y2_CO2_pct = st.number_input("Concentración residual de $CO_2$ deseada en el gas de salida por la Parte Superior (% vol)", min_value=0.0, max_value=100.0, value=2.0, format="%.4f")
+    y2_CO2_pct = st.number_input("Concentración residual de $CO_2$ deseada en el gas de salida por la parte superior (% vol)", min_value=0.0, max_value=100.0, value=2.0, format="%.4f")
     
     st.info(
     "📌 **Nota:** De acuerdo con los requerimientos fijos del modelo simplificado, las condiciones térmicas y de presión se establecen en 25 °C y 1.2 atm."
