@@ -76,21 +76,23 @@ with st.form("simulador_form"):
     
     st.write("#### :blue[Composición del Gas de Entrada (Parte Inferior - Corriente G₁)]")
     
-    # Inputs numéricos
+    # Inputs numéricos (Se quedan igual)
     y1_CO2_pct = st.number_input("Porcentaje volumétrico de CO₂ (% vol)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
     y1_O2_pct  = st.number_input("Porcentaje volumétrico de O₂ (% vol)", min_value=0.0, max_value=100.0, value=6.0, format="%.4f")
     y1_N2_pct  = st.number_input("Porcentaje volumétrico de N₂ (% vol)", min_value=0.0, max_value=100.0, value=79.0, format="%.4f")
 
-    # Inicializamos las variables en el session_state para que no se borren al hacer clic
+    # Inicializamos las variables en el session_state para evitar pérdidas de estado
     if "datos_gas_validos" not in st.session_state:
         st.session_state.datos_gas_validos = False
     if "mensaje_balance" not in st.session_state:
         st.session_state.mensaje_balance = None
-    if "tipo_mensaje" not in st.session_state: # 'success', 'error' o 'warning'
+    if "tipo_mensaje" not in st.session_state: 
         st.session_state.tipo_mensaje = None
 
-    # Botón intermedio para accionar la verificación
-    if st.button("Verificar Balance"):
+    # CORRECCIÓN CLAVE: Ambos deben ser botones nativos del formulario para procesar los datos
+    btn_verificar = st.form_submit_button("Verificar Balance")
+
+    if btn_verificar:
         suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
         
         if abs(suma_total_gas - 100.0) <= 0.0001:
@@ -98,6 +100,7 @@ with st.form("simulador_form"):
             st.session_state.tipo_mensaje = "success"
             st.session_state.datos_gas_validos = True
         elif suma_total_gas > 100.0:
+            excaso = suma_total_gas - 100.0
             st.session_state.mensaje_balance = f"❌ **¡Error en la composición!** La suma total es mayor a 100.00% (Actual: {suma_total_gas:.4f}%). Por favor, reajuste los valores."
             st.session_state.tipo_mensaje = "error"
             st.session_state.datos_gas_validos = False
@@ -107,7 +110,7 @@ with st.form("simulador_form"):
             st.session_state.tipo_mensaje = "warning"
             st.session_state.datos_gas_validos = False
 
-    # Renderizar el mensaje guardado en el estado de la sesión si existe
+    # Renderizar el cuadro de diálogo correspondiente bajo el botón
     if st.session_state.mensaje_balance:
         if st.session_state.tipo_mensaje == "success":
             st.success(st.session_state.mensaje_balance)
@@ -116,8 +119,8 @@ with st.form("simulador_form"):
         elif st.session_state.tipo_mensaje == "warning":
             st.warning(st.session_state.mensaje_balance)
 
-    # El botón final de calcular responderá al estado de la verificación
-    submit_button = st.form_submit_button("Verificar composición", disabled=not st.session_state.datos_gas_validos)
+    # Botón maestro de cálculo final (Deshabilitado hasta que la verificación sea exitosa)
+    submit_button = st.form_submit_button("Calcular Balance de Materia", disabled=not st.session_state.datos_gas_validos)
     
     st.write("#### :blue[Condiciones de operación y especificaciones de salida]")
     x2_input = st.number_input("Concentración de $CO_2$ en el líquido de entrada en la Parte Superior ($x_2$, mol CO₂/mol sol)", min_value=0.0, max_value=1.0, value=0.0580, format="%.4f")
