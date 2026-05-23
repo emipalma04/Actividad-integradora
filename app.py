@@ -70,35 +70,30 @@ st.markdown("---")
 # FORMULARIO DE ENTRADAS DE DISEÑO
 # ==============================================================================
 with st.form("simulador_form"):
+   
+    # 1. SECCIÓN DE COMPOSICIÓN DEL GAS (Fuera del formulario para actualización instantánea en tiempo real)
     st.write("#### :blue[Variables de entrada del proceso]")
-    
     C_MEA = st.number_input("Concentración inicial de la solución de MEA (% en peso)", min_value=0.0, max_value=100.0, value=30.0, step=1.0, format="%.4f")
     
     st.write("#### :blue[Composición del Gas de Entrada (Parte Inferior - Corriente G₁)]")
     
-    # Inputs numéricos (Se quedan igual)
     y1_CO2_pct = st.number_input("Porcentaje volumétrico de CO₂ (% vol)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
     y1_O2_pct  = st.number_input("Porcentaje volumétrico de O₂ (% vol)", min_value=0.0, max_value=100.0, value=6.0, format="%.4f")
     y1_N2_pct  = st.number_input("Porcentaje volumétrico de N₂ (% vol)", min_value=0.0, max_value=100.0, value=79.0, format="%.4f")
 
-    # Inicializamos las variables en el session_state para evitar pérdidas de estado
-    if "datos_gas_validos" not in st.session_state:
-        st.session_state.datos_gas_validos = False
-    if "mensaje_balance" not in st.session_state:
-        st.session_state.mensaje_balance = None
-    if "tipo_mensaje" not in st.session_state: 
-        st.session_state.tipo_mensaje = None
+    # Calculamos la suma en tiempo real ante cualquier cambio numérico
+    suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
+    datos_gas_validos = False
 
-    if btn_verificar:
-        suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
-        
+    # Botón normal de control de flujo
+    if st.button("Verificar composiciones"):
         if abs(suma_total_gas - 100.0) <= 0.0001:
             st.session_state.mensaje_balance = f"✅ Mezcla balanceada correctamente: Suma total = {suma_total_gas:.4f}%"
             st.session_state.tipo_mensaje = "success"
             st.session_state.datos_gas_validos = True
         elif suma_total_gas > 100.0:
-            excaso = suma_total_gas - 100.0
-            st.session_state.mensaje_balance = f"❌ **¡Error en la composición!** La suma total es mayor a 100.00% (Actual: {suma_total_gas:.4f}%). Por favor, reajuste los valores."
+            exceso = suma_total_gas - 100.0
+            st.session_state.mensaje_balance = f"❌ **¡Error en la composición!** La suma total es mayor a 100.00% (Actual: {suma_total_gas:.4f}%). Se excede por {exceso:.4f}%. Por favor, reajuste los valores."
             st.session_state.tipo_mensaje = "error"
             st.session_state.datos_gas_validos = False
         else:
@@ -107,36 +102,34 @@ with st.form("simulador_form"):
             st.session_state.tipo_mensaje = "warning"
             st.session_state.datos_gas_validos = False
 
-    # Renderizar el cuadro de diálogo correspondiente bajo el botón
-    if st.session_state.mensaje_balance:
+    # Despliegue de alertas dinámicas
+    if "mensaje_balance" in st.session_state and st.session_state.mensaje_balance:
         if st.session_state.tipo_mensaje == "success":
             st.success(st.session_state.mensaje_balance)
+            datos_gas_validos = True
         elif st.session_state.tipo_mensaje == "error":
             st.error(st.session_state.mensaje_balance)
         elif st.session_state.tipo_mensaje == "warning":
             st.warning(st.session_state.mensaje_balance)
 
-    # Botón maestro de cálculo final (Deshabilitado hasta que la verificación sea exitosa)
-    submit_button = st.form_submit_button("Verificar composiciones", disabled=not st.session_state.datos_gas_validos)
-    
-    st.write("#### :blue[Condiciones de operación y especificaciones de salida]")
-    x2_input = st.number_input("Concentración de $CO_2$ en el líquido de entrada en la Parte Superior ($x_2$, mol CO₂/mol sol)", min_value=0.0, max_value=1.0, value=0.0580, format="%.4f")
-    factor_min = st.number_input("Multiplicador de exceso para la relación real (Factor respecto a $L_{s-min}/G_s$)", min_value=1.0, max_value=5.0, value=1.2000, step=0.1, format="%.4f")
-    y2_CO2_pct = st.number_input("Concentración residual de $CO_2$ deseada en el gas de salida por la Parte Superior (% vol)", min_value=0.0, max_value=100.0, value=2.0, format="%.4f")
-    
-    st.info(
-    "📌 **Nota:** De acuerdo con los requerimientos fijos del modelo simplificado, las condiciones térmicas y de presión se establecen en 25 °C y 1.2 atm."
- )
+    st.markdown("---")
 
-    st.warning(
-        "⚠️ **Aviso:** Dependiendo de la configuración regional del sistema, los números decimales "
-        "pueden visualizarse con coma (,) o punto (.) como separador decimal. "
-        "Esto no afecta los cálculos realizados ni los resultados generados por el modelo."
-    )
+    # 2. FORMULARIO PRINCIPAL DE SIMULACIÓN (Protegido por la validación anterior)
+    with st.form("simulador_form"):
+        st.write("#### :blue[Condiciones de operación y especificaciones de salida]")
+        
+        x2_input = st.number_input("Concentración de $CO_2$ en el líquido de entrada en la Parte Superior ($x_2$, mol CO₂/mol sol)", min_value=0.0, max_value=1.0, value=0.0580, format="%.4f")
+        factor_min = st.number_input("Multiplicador de exceso para la relación real (Factor respecto a $L_{s-min}/G_s$)", min_value=1.0, max_value=5.0, value=1.2000, step=0.1, format="%.4f")
+        y2_CO2_pct = st.number_input("Concentración residual de $CO_2$ deseada en el gas de salida por la Parte Superior (% vol)", min_value=0.0, max_value=100.0, value=2.0, format="%.4f")
+        
+        st.info("📌 **Nota:** De acuerdo con los requerimientos fijos del modelo simplificado, las condiciones térmicas y de presión se establecen en 25 °C y 1.2 atm.")
+        st.warning("⚠️ **Aviso:** Dependiendo de la configuración regional del sistema, los números decimales pueden visualizarse con coma (,) o punto (.) como separador decimal. Esto no afecta los cálculos realizados.")
 
-    submit_button = st.form_submit_button(
-        label="Correr simulación"
-    )
+        # Único botón de envío oficial del formulario (Se bloquea si el gas no suma 100)
+        submit_button = st.form_submit_button(
+            label="Correr simulación", 
+            disabled=not datos_gas_validos
+        )
 
 # ==============================================================================
 # ALGORITMO MATEMÁTICO Y BALANCES DE MATERIA
