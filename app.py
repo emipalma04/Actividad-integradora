@@ -30,6 +30,19 @@ st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bott
 
 # Título del Proyecto Integrador y Datos del Estudiante (Conforme a la Portada Oficial)
 
+import streamlit as st
+from deep_translator import GoogleTranslator
+
+# 1. Selector de idioma en la barra lateral
+idioma = st.sidebar.selectbox("🌐 Idioma / Language", ["Español", "English"])
+
+# 2. Función mágica que traduce cualquier texto automáticamente
+def traducir(texto):
+    if idioma == "English":
+        # Traduce del español (es) al inglés (en) automáticamente
+        return GoogleTranslator(source='es', target='en').translate(texto)
+    return texto
+    
 st.markdown("""
     <div style='background-color: #F3E8FF; padding: 20px 30px; border-radius: 8px; border: 1px solid #D9E2EC; text-align: center; margin-top: 15px; margin-bottom: 20px;'>
         <h2 style='color: #0A2540; font-family: sans-serif; font-size: 24px; margin: 0; line-height: 1.3;'>
