@@ -30,7 +30,7 @@ st.markdown("<hr style='border: 1px solid #0A2540; margin-top: 10px; margin-bott
 
 # Título del Proyecto Integrador y Datos del Estudiante (Conforme a la Portada Oficial)
 
-st.markdown("<h2 style='color: #0A2540; font-family: sans-serif; font-size: 24px; margin-bottom: 15px;'><b> AUTOMATIZACIÓN Y ANÁLISIS DEL PROCESO DE ABSORCIÓN DE CO₂ USANDO SOLUCIONES ACUOSAS DE MONOETANOLAMINA (MEA)</b></h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='color: #0A2540; font-family: sans-serif; font-size: 24px; margin-bottom: 15px;'><b> MODELADO NUMÉRICO DEL BALANCE DE MATERIA EN LA ABSORCIÓN QUÍMICA DE CO₂ MEDIANTE SOLUCIONES DE MONOETANOLAMINA (MEA) EN TORRES EMPACADAS (PACKED TOWERS)</b></h2>", unsafe_allow_html=True)
 
 # ==============================================================================
 # GUÍA DE USO Y DIAGRAMA DE FLUJO DE APOYO
