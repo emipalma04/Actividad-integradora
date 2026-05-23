@@ -144,9 +144,9 @@ with st.form("simulador_form"):
     submit_button = st.form_submit_button(
         label="Correr simulación"
     )
-    # --- CONTROL DEL FLUJO AFUERA O ADENTRO DEL FORMULARIO ---
     
-    if submit_button:
+# --- CONTROL DEL FLUJO AFUERA O ADENTRO DEL FORMULARIO ---
+if submit_button:
         
     # Doble verificación en tiempo real por si cambiaron los inputs sin volver a verificar
     suma_actual = y1_CO2_pct + y1_O2_pct + y1_N2_pct
