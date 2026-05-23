@@ -71,41 +71,33 @@ st.markdown("---")
 # ==============================================================================
 with st.form("simulador_form"):
     st.write("#### :blue[Variables de entrada del proceso]")
-
+    
     C_MEA = st.number_input("Concentración inicial de la solución de MEA (% en peso)", min_value=0.0, max_value=100.0, value=30.0, step=1.0, format="%.4f")
-
+    
     st.write("#### :blue[Composición del Gas de Entrada (Parte Inferior - Corriente G₁)]")
-
+    
     # Inputs numéricos
-    # Inputs numéricos (Se quedan igual)
     y1_CO2_pct = st.number_input("Porcentaje volumétrico de CO₂ (% vol)", min_value=0.0, max_value=100.0, value=15.0, format="%.4f")
     y1_O2_pct  = st.number_input("Porcentaje volumétrico de O₂ (% vol)", min_value=0.0, max_value=100.0, value=6.0, format="%.4f")
     y1_N2_pct  = st.number_input("Porcentaje volumétrico de N₂ (% vol)", min_value=0.0, max_value=100.0, value=79.0, format="%.4f")
 
     # Inicializamos las variables en el session_state para que no se borren al hacer clic
-    # Inicializamos las variables en el session_state para evitar pérdidas de estado
     if "datos_gas_validos" not in st.session_state:
         st.session_state.datos_gas_validos = False
     if "mensaje_balance" not in st.session_state:
         st.session_state.mensaje_balance = None
     if "tipo_mensaje" not in st.session_state: # 'success', 'error' o 'warning'
-    if "tipo_mensaje" not in st.session_state: 
         st.session_state.tipo_mensaje = None
 
     # Botón intermedio para accionar la verificación
     if st.button("Verificar Balance"):
-    # CORRECCIÓN CLAVE: Ambos deben ser botones nativos del formulario para procesar los datos
-    btn_verificar = st.form_submit_button("Verificar Balance")
-
-    if btn_verificar:
         suma_total_gas = y1_CO2_pct + y1_O2_pct + y1_N2_pct
-
+        
         if abs(suma_total_gas - 100.0) <= 0.0001:
             st.session_state.mensaje_balance = f"✅ Mezcla balanceada correctamente: Suma total = {suma_total_gas:.4f}%"
             st.session_state.tipo_mensaje = "success"
             st.session_state.datos_gas_validos = True
         elif suma_total_gas > 100.0:
-            excaso = suma_total_gas - 100.0
             st.session_state.mensaje_balance = f"❌ **¡Error en la composición!** La suma total es mayor a 100.00% (Actual: {suma_total_gas:.4f}%). Por favor, reajuste los valores."
             st.session_state.tipo_mensaje = "error"
             st.session_state.datos_gas_validos = False
@@ -116,7 +108,6 @@ with st.form("simulador_form"):
             st.session_state.datos_gas_validos = False
 
     # Renderizar el mensaje guardado en el estado de la sesión si existe
-    # Renderizar el cuadro de diálogo correspondiente bajo el botón
     if st.session_state.mensaje_balance:
         if st.session_state.tipo_mensaje == "success":
             st.success(st.session_state.mensaje_balance)
@@ -127,14 +118,12 @@ with st.form("simulador_form"):
 
     # El botón final de calcular responderá al estado de la verificación
     submit_button = st.form_submit_button("Verificar composición", disabled=not st.session_state.datos_gas_validos)
-    # Botón maestro de cálculo final (Deshabilitado hasta que la verificación sea exitosa)
-    submit_button = st.form_submit_button("Calcular Balance de Materia", disabled=not st.session_state.datos_gas_validos)
-
+    
     st.write("#### :blue[Condiciones de operación y especificaciones de salida]")
     x2_input = st.number_input("Concentración de $CO_2$ en el líquido de entrada en la Parte Superior ($x_2$, mol CO₂/mol sol)", min_value=0.0, max_value=1.0, value=0.0580, format="%.4f")
     factor_min = st.number_input("Multiplicador de exceso para la relación real (Factor respecto a $L_{s-min}/G_s$)", min_value=1.0, max_value=5.0, value=1.2000, step=0.1, format="%.4f")
     y2_CO2_pct = st.number_input("Concentración residual de $CO_2$ deseada en el gas de salida por la Parte Superior (% vol)", min_value=0.0, max_value=100.0, value=2.0, format="%.4f")
-
+    
     st.info(
     "📌 **Nota:** De acuerdo con los requerimientos fijos del modelo simplificado, las condiciones térmicas y de presión se establecen en 25 °C y 1.2 atm."
  )
@@ -239,11 +228,11 @@ if submit_button:
     )
 
     st.markdown("---")
-
+  
     # Dividimos la sección en 2 columnas iguales
-
+    
     col_izq, col_der = st.columns(2)
-
+    
     with col_izq:
         st.markdown(
             f"""
@@ -266,7 +255,7 @@ if submit_button:
             """,
             unsafe_allow_html=True
         )
-
+        
     with col_der:
         st.markdown(
             f"""
@@ -288,12 +277,12 @@ if submit_button:
             """,
             unsafe_allow_html=True
         )
-
+        
     # ==========================================================================
     # TABLA RESUMEN DE RESPUESTAS (DISEÑO TOTALMENTE PINTADO EN MORADO PASTEL)
     # ==========================================================================
     st.markdown("<h3 style='color: #0A2540;'> </h3>", unsafe_allow_html=True)
-
+    
     st.markdown(
         f"""
         <div style="background-color: #F4EFFF; padding: 20px; border-radius: 8px; border-left: 5px solid #9061F9; min-height: 430px;">
@@ -312,9 +301,9 @@ if submit_button:
         """,
         unsafe_allow_html=True
     )
-
+    
     st.markdown("<h3 style='color: #0A2540;'> </h3>", unsafe_allow_html=True)
-
+    
     st.info(
     "📌 **Nota:** Si desea modificar los parámetros o condiciones de entrada, "
     "desplácese hacia la parte superior del formulario y ajuste los valores según corresponda. "
