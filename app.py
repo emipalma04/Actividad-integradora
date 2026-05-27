@@ -354,5 +354,4 @@ if submit_button:
     st.info(
     "📌 **Nota:** Si desea modificar los parámetros o condiciones de entrada, "
     "desplácese hacia la parte superior del formulario y ajuste los valores según corresponda. "
-    "Los resultados se actualizarán automáticamente con los nuevos datos ingresados."
 )
